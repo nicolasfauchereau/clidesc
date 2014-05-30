@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<head>
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+   
+   
+   
+   
+
+
+<style>
+
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+</style>
+</head>
+<body>
+
+        <div id="map" style="width: 2000px; height: 1000px"></div>
+
+<script>
+
+
+
+var map = L.map('map').setView([-13.9, -171.75], 10);
+
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/nicolasf.ic0ebom5/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map tiles by <a href="http://www.mapbox.com/m">Mapbox</a> Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+}).addTo(map);
+
+
+var circle_1 = L.circle([-13.8167, -171.9833], 62.3464888417, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_1.bindPopup("NAME: <b>Faleolo Intl</b><br>            LAT: -13.82<br>LON: -171.98<br>            VALUE: -0.04");
+map.addLayer(circle_1)
+
+var circle_2 = L.circle([-13.8, -171.9333], 154.668726598, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_2.bindPopup("NAME: <b>Fasitoo Uta</b><br>            LAT: -13.80<br>LON: -171.93<br>            VALUE: 0.10");
+map.addLayer(circle_2)
+
+var circle_3 = L.circle([-13.95, -171.9167], 4193.89390935, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_3.bindPopup("NAME: <b>Matautu Lefaga</b><br>            LAT: -13.95<br>LON: -171.92<br>            VALUE: 2.80");
+map.addLayer(circle_3)
+
+var circle_4 = L.circle([-14.0833, -171.5833], 1390.92857275, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_4.bindPopup("NAME: <b>Salani Falealili</b><br>            LAT: -14.08<br>LON: -171.58<br>            VALUE: -0.93");
+map.addLayer(circle_4)
+
+var circle_5 = L.circle([-13.9833, -171.8333], 1004.6334615, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_5.bindPopup("NAME: <b>Nuusuatia</b><br>            LAT: -13.98<br>LON: -171.83<br>            VALUE: 0.67");
+map.addLayer(circle_5)
+
+var circle_6 = L.circle([-13.8333, -171.9167], 1453.69617774, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_6.bindPopup("NAME: <b>Leauvaa Uta</b><br>            LAT: -13.83<br>LON: -171.92<br>            VALUE: -0.97");
+map.addLayer(circle_6)
+
+var circle_7 = L.circle([-14.0, -171.4833], 1514.28123193, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_7.bindPopup("NAME: <b>Tiavea Uta</b><br>            LAT: -14.00<br>LON: -171.48<br>            VALUE: 1.01");
+map.addLayer(circle_7)
+
+var circle_8 = L.circle([-13.9167, -171.6167], 1361.53695444, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_8.bindPopup("NAME: <b>Sauniatu</b><br>            LAT: -13.92<br>LON: -171.62<br>            VALUE: -0.91");
+map.addLayer(circle_8)
+
+var circle_9 = L.circle([-13.65, -171.7667], 3986.70566208, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_9.bindPopup("NAME: <b>Savalalo</b><br>            LAT: -13.65<br>LON: -171.77<br>            VALUE: -2.66");
+map.addLayer(circle_9)
+
+var circle_10 = L.circle([-13.9, -172.05], 64.3961109452, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_10.bindPopup("NAME: <b>Samatau</b><br>            LAT: -13.90<br>LON: -172.05<br>            VALUE: -0.04");
+map.addLayer(circle_10)
+
+var circle_11 = L.circle([-13.4833, -172.7667], 1725.0375138, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_11.bindPopup("NAME: <b>Asau</b><br>            LAT: -13.48<br>LON: -172.77<br>            VALUE: -1.15");
+map.addLayer(circle_11)
+
+var circle_12 = L.circle([-13.5333, -172.65], 1996.10671267, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_12.bindPopup("NAME: <b>Asau Forestry</b><br>            LAT: -13.53<br>LON: -172.65<br>            VALUE: -1.33");
+map.addLayer(circle_12)
+
+var circle_13 = L.circle([-13.7833, -172.58], 889.843740395, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_13.bindPopup("NAME: <b>Salailua</b><br>            LAT: -13.78<br>LON: -172.58<br>            VALUE: -0.59");
+map.addLayer(circle_13)
+
+var circle_14 = L.circle([-13.75, -172.317], 1370.64677061, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_14.bindPopup("NAME: <b>Satupaitea</b><br>            LAT: -13.75<br>LON: -172.32<br>            VALUE: 0.91");
+map.addLayer(circle_14)
+
+var circle_15 = L.circle([-13.434, -172.345], 829.30200168, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_15.bindPopup("NAME: <b>Fagamalo</b><br>            LAT: -13.43<br>LON: -172.34<br>            VALUE: -0.55");
+map.addLayer(circle_15)
+
+var circle_16 = L.circle([-13.75, -172.3], 1914.16141062, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_16.bindPopup("NAME: <b>Vaitoomuli</b><br>            LAT: -13.75<br>LON: -172.30<br>            VALUE: 1.28");
+map.addLayer(circle_16)
+
+var circle_17 = L.circle([-13.7833, -172.5], 1192.53157484, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_17.bindPopup("NAME: <b>Taga</b><br>            LAT: -13.78<br>LON: -172.50<br>            VALUE: 0.80");
+map.addLayer(circle_17)
+
+var circle_18 = L.circle([-13.4833, -172.4667], 2623.63027256, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_18.bindPopup("NAME: <b>Matavai</b><br>            LAT: -13.48<br>LON: -172.47<br>            VALUE: -1.75");
+map.addLayer(circle_18)
+
+var circle_19 = L.circle([-13.5833, -172.2], 1927.67200713, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_19.bindPopup("NAME: <b>Fatausi</b><br>            LAT: -13.58<br>LON: -172.20<br>            VALUE: 1.29");
+map.addLayer(circle_19)
+
+var circle_20 = L.circle([-13.5667, -172.75], 93.3870089368, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_20.bindPopup("NAME: <b>Letui</b><br>            LAT: -13.57<br>LON: -172.75<br>            VALUE: 0.06");
+map.addLayer(circle_20)
+
+var circle_21 = L.circle([-13.7597, -172.3708], 1349.78580703, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_21.bindPopup("NAME: <b>Sili</b><br>            LAT: -13.76<br>LON: -172.37<br>            VALUE: -0.90");
+map.addLayer(circle_21)
+
+var circle_22 = L.circle([-13.7358, -172.2213], 822.147422725, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_22.bindPopup("NAME: <b>Salelologa</b><br>            LAT: -13.74<br>LON: -172.22<br>            VALUE: -0.55");
+map.addLayer(circle_22)
+
+var circle_23 = L.circle([-13.4333, -172.2], 629.39995257, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_23.bindPopup("NAME: <b>Puapua</b><br>            LAT: -13.43<br>LON: -172.20<br>            VALUE: 0.42");
+map.addLayer(circle_23)
+
+var circle_24 = L.circle([-13.7, -172.5833], 564.672653647, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_24.bindPopup("NAME: <b>Vaipu-a</b><br>            LAT: -13.70<br>LON: -172.58<br>            VALUE: 0.38");
+map.addLayer(circle_24)
+
+var circle_25 = L.circle([-13.6, -172.2167], 42.7075224597, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_25.bindPopup("NAME: <b>Avao</b><br>            LAT: -13.60<br>LON: -172.22<br>            VALUE: -0.03");
+map.addLayer(circle_25)
+
+var circle_26 = L.circle([-13.75, -172.5333], 97.1852823632, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_26.bindPopup("NAME: <b>Lata AWS</b><br>            LAT: -13.75<br>LON: -172.53<br>            VALUE: -0.06");
+map.addLayer(circle_26)
+
+var circle_27 = L.circle([-13.4613, -172.3888], 244.518695644, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_27.bindPopup("NAME: <b>Le Piu Tai</b><br>            LAT: -13.46<br>LON: -172.39<br>            VALUE: -0.16");
+map.addLayer(circle_27)
+
+var circle_28 = L.circle([-13.7485, -172.2521], 2077.00115674, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_28.bindPopup("NAME: <b>Maota Int Airport</b><br>            LAT: -13.75<br>LON: -172.25<br>            VALUE: 1.38");
+map.addLayer(circle_28)
+
+var circle_29 = L.circle([-13.4502, -172.7638], 1452.56096674, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_29.bindPopup("NAME: <b>Mt Talu</b><br>            LAT: -13.45<br>LON: -172.76<br>            VALUE: -0.97");
+map.addLayer(circle_29)
+
+var circle_30 = L.circle([-13.5702, -172.7466], 208.924087267, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_30.bindPopup("NAME: <b>Neiafu</b><br>            LAT: -13.57<br>LON: -172.75<br>            VALUE: 0.14");
+map.addLayer(circle_30)
+
+var circle_31 = L.circle([-13.45, -172.3667], 559.138161902, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_31.bindPopup("NAME: <b>Vaipouli</b><br>            LAT: -13.45<br>LON: -172.37<br>            VALUE: 0.37");
+map.addLayer(circle_31)
+
+var circle_32 = L.circle([-13.8153, -171.7797], 1850.91171185, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_32.bindPopup("NAME: <b>Apia</b><br>            LAT: -13.82<br>LON: -171.78<br>            VALUE: -1.23");
+map.addLayer(circle_32)
+
+var circle_33 = L.circle([-13.85, -171.75], 65.1634497666, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_33.bindPopup("NAME: <b>Nafanua</b><br>            LAT: -13.85<br>LON: -171.75<br>            VALUE: 0.04");
+map.addLayer(circle_33)
+
+var circle_34 = L.circle([-13.9, -171.7667], 356.677594803, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_34.bindPopup("NAME: <b>Afiamalu</b><br>            LAT: -13.90<br>LON: -171.77<br>            VALUE: -0.24");
+map.addLayer(circle_34)
+
+var circle_35 = L.circle([-14.0167, -171.7167], 14.9219130109, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_35.bindPopup("NAME: <b>Togitogiga</b><br>            LAT: -14.02<br>LON: -171.72<br>            VALUE: -0.01");
+map.addLayer(circle_35)
+
+var circle_36 = L.circle([-13.85, -171.7], 3585.08637613, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_36.bindPopup("NAME: <b>Laulii</b><br>            LAT: -13.85<br>LON: -171.70<br>            VALUE: -2.39");
+map.addLayer(circle_36)
+
+var circle_37 = L.circle([-13.85, -171.783], 1076.24502115, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_37.bindPopup("NAME: <b>Moamoa</b><br>            LAT: -13.85<br>LON: -171.78<br>            VALUE: 0.72");
+map.addLayer(circle_37)
+
+var circle_38 = L.circle([-14.0333, -171.55], 788.954684722, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_38.bindPopup("NAME: <b>Lotofaga A.</b><br>            LAT: -14.03<br>LON: -171.55<br>            VALUE: 0.53");
+map.addLayer(circle_38)
+
+var circle_39 = L.circle([-13.9167, -171.75], 2347.6785094, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_39.bindPopup("NAME: <b>Alaoa</b><br>            LAT: -13.92<br>LON: -171.75<br>            VALUE: 1.57");
+map.addLayer(circle_39)
+
+var circle_40 = L.circle([-13.8167, -171.9833], 3287.66231746, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_40.bindPopup("NAME: <b>Faleolo Apt</b><br>            LAT: -13.82<br>LON: -171.98<br>            VALUE: -2.19");
+map.addLayer(circle_40)
+
+var circle_41 = L.circle([-14.05, -171.75], 2304.07235509, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_41.bindPopup("NAME: <b>Tafitoala AWS</b><br>            LAT: -14.05<br>LON: -171.75<br>            VALUE: -1.54");
+map.addLayer(circle_41)
+
+var circle_42 = L.circle([-13.8357, -171.9812], 1383.75905163, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_42.bindPopup("NAME: <b>Faleolo Int East</b><br>            LAT: -13.84<br>LON: -171.98<br>            VALUE: -0.92");
+map.addLayer(circle_42)
+
+var circle_43 = L.circle([-13.833, -172.0126], 0.235221547567, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_43.bindPopup("NAME: <b>Faleolo Int West</b><br>            LAT: -13.83<br>LON: -172.01<br>            VALUE: -0.00");
+map.addLayer(circle_43)
+
+var circle_44 = L.circle([-13.8526, -172.1005], 858.837372643, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_44.bindPopup("NAME: <b>Manono</b><br>            LAT: -13.85<br>LON: -172.10<br>            VALUE: -0.57");
+map.addLayer(circle_44)
+
+var circle_45 = L.circle([-13.8782, -171.6014], 4697.0801731, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_45.bindPopup("NAME: <b>Saolufata</b><br>            LAT: -13.88<br>LON: -171.60<br>            VALUE: -3.13");
+map.addLayer(circle_45)
+
+var circle_46 = L.circle([-14.3502, -171.7166], 2106.6282455, {
+                            color: 'None',
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.6
+                            });
+circle_46.bindPopup("NAME: <b>Togitogiga AWS</b><br>            LAT: -14.35<br>LON: -171.72<br>            VALUE: 1.40");
+map.addLayer(circle_46)
+
+var circle_47 = L.circle([-13.9613, -171.5955], 1004.83311014, {
+                            color: 'None',
+                            fillColor: '#0000FF',
+                            fillOpacity: 0.6
+                            });
+circle_47.bindPopup("NAME: <b>Le Mafa</b><br>            LAT: -13.96<br>LON: -171.60<br>            VALUE: -0.67");
+map.addLayer(circle_47)
+
+
+
+
+
+
+</script>
+
+</body>
