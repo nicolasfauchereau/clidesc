@@ -1,10 +1,10 @@
 import numpy as np
-import pandas as pd 
+import pandas as pd
 import matplotlib.pyplot as plt
-from datetime import datetime 
-import vincent 
-import folium 
-import pandas as pd 
+from datetime import datetime
+import vincent
+import folium
+import pandas as pd
 
 stations = pd.read_csv('../../data/stations_open_1950.csv')
 

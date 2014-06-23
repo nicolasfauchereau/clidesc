@@ -1,4 +1,4 @@
-# clidesc.py
+# clide.py
 
 # PROJECT: CLIDESC
 # Author: Nicolas Fauchereau, NIWA
@@ -12,6 +12,7 @@ import psycopg2
 import pandas as pd
 import pandas.io.sql as psql
 from matplotlib import pyplot as plt
+import Image
 
 ###########################################################################
 # Settings
@@ -83,10 +84,10 @@ def clidesc_getStationsByCountry(conn, country):
     It opens the connection, reads the stations table
     country must be a string, with country codes (if more than one) separated by ','
     """
-    
+
     if ',' in country: 
         country = country.replace(',','\',\'')
-    
+
     # builds the query string
     query = """SELECT * FROM stations WHERE country_code IN ('%s') ORDER BY country_code, station_no""" % ( country )
     # get the table returned by the query as a pandas dataframe 
@@ -98,39 +99,39 @@ def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
     """
     returns the daily observations table for the requested stations, date range and columns
     depends on an open clidDB connection clideDB
-    
+
     Usage:
     table = clidesc_ObsDaily(clideDB, channels, stations, from_date, to_date )
     Currently no parameter checking.
     """
-    
+
     # some string formatting on the stations if more than one
     if isinstance(stations, str) and ',' in stations:
         stations = stations.replace(',','\',\'')
-    
+
     inputs = '%s::%s::%s::%s' % (channels, stations, from_date, to_date)
-    
+
     query = """
-    SELECT station_no, TO_CHAR(lsd, 'yyyy-mm-dd') as LSD, 
+    SELECT station_no, TO_CHAR(lsd, 'yyyy-mm-dd') as LSD,
     %s FROM obs_daily WHERE station_no IN ('%s') AND lsd >= TO_TIMESTAMP('%s', 'yyyy-mm-dd') 
     AND lsd <= TO_TIMESTAMP('%s', 'yyyy-mm-dd') ORDER BY lsd""" % (channels, stations, from_date, to_date)
 
     # get the table returned by the query as a pandas dataframe 
-    try: 
+    try:
         table = psql.frame_query(query, conn)
-    except: 
+    except:
         print('query failed for %s, was probably malformed' % (inputs))
     # the index of the pandas DataFrame is the 'lsd' field, correctly 
     # cast to pandas datetime index and named 'timestamp'
     table.index = pd.to_datetime(table.lsd)
     table.index.name = 'timestamp'
-    
+
     return table
 
 ################################################################
 def clidesc_rain24h(conn, stations, from_date, to_date):
     """
-    Utility function to read the rain_24h channel from the obs_daily table 
+    Utility function to read the rain_24h channel from the obs_daily table
     """
     return clidesc_ObsDaily(conn, 'rain_24h', stations, from_date, to_date)
 
@@ -138,16 +139,16 @@ def clidesc_rain24h(conn, stations, from_date, to_date):
 def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
     """
     Read channels for stations (stations) from the obs_subdaily table
-    usage: 
+    usage:
     table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )
     """
-    
+
     inputs = '%s::%s::%s::%s' % (channels, stations, from_date, to_date)
-    
+
     # some string formatting on the stations if more than one
     if isinstance(stations, str) and ',' in stations:
         stations = stations.replace(',','\',\'')
-    
+
     # builds the query string
     query = """SELECT station_no
     , TO_CHAR(lsd, 'yyyy-mm-dd') as LSD
@@ -159,15 +160,15 @@ def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
     ORDER BY lsd""" % (channels, stations, from_date, to_date)
 
     # get the table returned by the query as a pandas dataframe 
-    try: 
+    try:
         table = psql.frame_query(query, conn)
-    except: 
+    except:
         print('query failed for %s, was probably malformed' % (inputs))
     # the index of the pandas DataFrame is the 'lsd' field, correctly 
     # cast to pandas datetime index and named 'timestamp'
     table.index = pd.to_datetime(table.lsd)
     table.index.name = 'timestamp'
-    
+
     return table
 
 ################################################################
@@ -186,7 +187,7 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
         stations = stations.replace(',','\',\'')
 
     inputs = '%s::%s::%s::%s::%s' % (channels, table, stations, from_date, to_date)
-    
+
     query = """SELECT station_no
     , TO_CHAR(lsd, 'yyyy-mm-dd') as LSD
     , %s
@@ -197,15 +198,15 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
     ORDER BY lsd""" % (channels, table, stations, from_date, to_date)
 
     # get the table returned by the query as a pandas dataframe 
-    try: 
+    try:
         data = psql.frame_query(query, conn)
-    except: 
+    except:
         print('query failed for %s, was probably malformed' % (inputs))
     # the index of the pandas DataFrame is the 'lsd' field, correctly 
     # cast to pandas datetime index and named 'datetime'
     data.index = pd.to_datetime(data.lsd)
     data.index.name = 'timestamp'
-    
+
     return data
 
 ################################################################
@@ -219,7 +220,6 @@ def cm2inch(*tupl):
         return tuple(i/inch for i in tupl[0])
     else:
         return tuple()
-
 
 ################################################################
 def clidesc_Figure(size='A4'):
@@ -243,21 +243,9 @@ def clidesc_Figure(size='A4'):
 
 ################################################################
 def make_thumbnail(srcfile, thumbfile, height, width):
-    # makeThumb 
-    # creates a thumbnail of the given size from the srcFile and 
-    # puts it into the thumbfile.  Expects a PNG. 
-
-    #     clidesc_makeThumb <- function(srcfile, thumbfile, height, width) {
-    #     require(png)
-    #     img <- readPNG(srcfile)
-    #     png(file = thumbfile, height = height, width = width)
-    #     par(mar=c(0,0,0,0), xaxs="i", yaxs="i", ann=FALSE)
-    #     plot(1:2, type='n', xaxt = "n", yaxt = "n", xlab = "", ylab = "") 
-    #     lim <- par()
-    #     rasterImage(img, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
-    #     dev.off()
-    pass
-
+    with Image.open(srcfile) as im: 
+        im.thumbnail((width, height), Image.ANTIALIAS)
+        im.save(thumbfile)
 
 ################################################################
 # CLOSE

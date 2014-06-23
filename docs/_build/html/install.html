@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python installation instructions for CLIDEsc &mdash; CLIDEsc 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CLIDEsc 1 documentation" href="index.html" />
+    <link rel="prev" title="CLImate Data for the Environment Services application Client (CLIDEsc)" href="description.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>CLIDEsc 1 documentation</span></a></h1>
+        <h2 class="heading"><span>Python installation instructions for CLIDEsc</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="description.html">CLImate Data for the Environment Services application Client (CLIDEsc)</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="python-installation-instructions-for-clidesc">
+<h1>Python installation instructions for CLIDEsc<a class="headerlink" href="#python-installation-instructions-for-clidesc" title="Permalink to this headline">¶</a></h1>
+<p><strong>Note</strong>: you must be logged as an administrator (or root) on the
+clidesc server machine in order to install the Anaconda python
+distribution and configure clidesc to accept python as a climate
+services development language.</p>
+<div class="section" id="the-anaconda-python-distribution-download-and-installation">
+<h2>The Anaconda python distribution, download and installation<a class="headerlink" href="#the-anaconda-python-distribution-download-and-installation" title="Permalink to this headline">¶</a></h2>
+<p>The Anaconda scientific python distribution is a completely free
+enterprise-ready Python distribution for large-scale data processing,
+predictive analytics, and scientific computing. It includes the python
+interpreter itself, the python standard library as well as a set of
+packages exposing data structures and methods for data manipulation and
+scientific computing and visualization. In particular it provides Numpy,
+Scipy, Pandas, Matplotlib (+ basemap). The full list of packages is
+available at:</p>
+<p><a class="reference external" href="http://docs.continuum.io/anaconda/pkgs.html">http://docs.continuum.io/anaconda/pkgs.html</a></p>
+<p>The Anaconda python distribution must be downloaded from:</p>
+<p><a class="reference external" href="http://continuum.io/downloads">http://continuum.io/downloads</a></p>
+<p>For the correct version of your linux system, to know whether CLIDEsc is
+running on a 32 bits or 64 bits server, type</p>
+<div class="highlight-python"><div class="highlight"><pre>$ uname –a
+</pre></div>
+</div>
+<p>in a terminal (the $ indicates the terminal prompt)</p>
+<p>It will return either:</p>
+<div class="highlight-python"><div class="highlight"><pre>x86_64 (64 bits kernel)
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre>i686   (32 bits kernel)
+</pre></div>
+</div>
+<p>Once copied over, make sure the anaconda installer is executable by
+going in the right directory (with cd) and entering (example for
+<tt class="docutils literal"><span class="pre">version</span> <span class="pre">2.0.1</span></tt> of Anaconda):</p>
+<div class="highlight-python"><div class="highlight"><pre>$ chmod +x Anaconda-2.0.1-Linux-x86.sh
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ chmod +x Anaconda-2.0.1-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>then to launch the installer:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ ./Anaconda.2.0.1-Linux-x86.sh
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-python"><div class="highlight"><pre>$ ./Anaconda.2.0.1-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>The installer will ask you a few questions, the most important is
+related to the installation directory: The recommended installation
+directory is <tt class="docutils literal"><span class="pre">/opt</span></tt>: i.e the python executable will be contained in
+<tt class="docutils literal"><span class="pre">/opt/anaconda/bin</span></tt>.</p>
+<p>Once Anaconda is installed, you need to update conda (the python
+‘package manager’ that comes with anaconda and allows the painless
+installation and update of third party modules) by entering</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda update conda
+</pre></div>
+</div>
+<p>Then a good thing is to update the anaconda packages already installed</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda update anaconda
+</pre></div>
+</div>
+<p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to install
+packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package Index</a>.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ conda install pip
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-of-additional-libraries">
+<h2>Installation of additional libraries<a class="headerlink" href="#installation-of-additional-libraries" title="Permalink to this headline">¶</a></h2>
+<p>A few other libraries need to be installed in order to make the most of
+the Python scientific stack:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://matplotlib.org/basemap/">basemap</a>: to create static maps</li>
+<li><a class="reference external" href="http://vincent.readthedocs.org/en/latest/">vincent</a>: to create
+dynamic visualisations in the browser</li>
+<li><a class="reference external" href="https://github.com/wrobstory/folium">folium</a>: to create dynamic
+maps in the browser</li>
+<li><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>: to
+create sophisticated statistical visualisations</li>
+</ul>
+<div class="section" id="id1">
+<h3>Basemap<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://matplotlib.org/basemap/">Basemap</a> is part of the Anaconda
+Python distribution and can be installed by:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda install basemap
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Vincent<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://vincent.readthedocs.org/en/latest/">vincent</a> is to be
+installed using <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install vincent
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Folium<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/wrobstory/folium">folium</a>, similarly install via
+<a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install folium
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>Seaborn<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a> is also
+to be installed via <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install seaborn
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="psycopg2-interface-to-the-clide-database">
+<h2>psycopg2: interface to the <a class="reference external" href="http://www.bom.gov.au/climate/pacific/about-clide.shtml">CLIDE</a> database<a class="headerlink" href="#psycopg2-interface-to-the-clide-database" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a> provides the interface to
+the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database and needs
+to be installed separately from sources, as it is not part of the
+libraries available through the conda package manager.</p>
+<p>One of the requirement is that <tt class="docutils literal"><span class="pre">pg_config</span></tt> should be in the system
+PATH, i.e. if you type:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pg_config --version
+</pre></div>
+</div>
+<p>in a terminal it should return the version of PostgreSQL. If something
+goes wrong here, please refer to <a class="reference external" href="http://initd.org/psycopg/docs/install.html#install-from-source">the psycopg installation
+documentation</a></p>
+<p>The sources (tar.gz file) for psycopg2 need to be downloaded from <a class="reference external" href="http://initd.org/psycopg/download/">The
+psycopg download page</a></p>
+<p>Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz
+archive and enter:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ tar –zxvf psycopg2-2.5.2.tar.gz
+</pre></div>
+</div>
+<p>then:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd psycop2-2.5.2
+</pre></div>
+</div>
+<p>then install the module:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/python setup.py build
+$ /opt/anaconda/bin/python setup.py install
+</pre></div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="description.html">CLImate Data for the Environment Services application Client (CLIDEsc)</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Nicolas Fauchereau, Andrew Watkins, alan Porteous (NIWA Ltd.).
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
