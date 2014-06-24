@@ -103,7 +103,9 @@ in a terminal it should return the version of PostgreSQL. If something goes wron
 
 ```psycopg2``` can be installed in two ways: 
 
-1. The recommended way, using conda third party channels:   
+1. The recommended way:   
+
+We make use of [Dan Blanchard](http://dan-blanchard.github.io/)'s channel for psycopg2
         
     $ conda install -c https://conda.binstar.org/dan_blanchard psycopg2
 
