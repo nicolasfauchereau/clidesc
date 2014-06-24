@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CLIDEsc'
-copyright = u'2014, Nicolas Fauchereau, Andrew Watkins, alan Porteous (NIWA Ltd.)'
+copyright = u'2014, Nicolas Fauchereau, Andrew Watkins, Alan Porteous (NIWA Ltd.)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
