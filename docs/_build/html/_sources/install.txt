@@ -174,7 +174,7 @@ documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
 1. The recommended way, using conda third party channels:
 
-   conda install -c https://conda.binstar.org/dan\_blanchard psycopg2
+   $ conda install -c https://conda.binstar.org/dan\_blanchard psycopg2
 
 2. Installing from sources:
 
