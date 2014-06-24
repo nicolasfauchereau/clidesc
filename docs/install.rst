@@ -178,8 +178,9 @@ documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
 2. Installing from sources:
 
-The sources (tar.gz file) for psycopg2 need to be downloaded from `The
-psycopg download page <http://initd.org/psycopg/download/>`_
+If you want to install from sources, the psycopg2 archive (tar.gz) needs
+to be downloaded from `The psycopg download
+page <http://initd.org/psycopg/download/>`_
 
 Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz
 archive and enter:

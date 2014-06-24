@@ -109,7 +109,7 @@ in a terminal it should return the version of PostgreSQL. If something goes wron
 
 2. Installing from sources: 
 
-The sources (tar.gz file) for psycopg2 need to be downloaded from [The psycopg download page](http://initd.org/psycopg/download/)
+If you want to install from sources, the psycopg2 archive (tar.gz) needs to be downloaded from [The psycopg download page](http://initd.org/psycopg/download/)
 
 Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz archive and enter:
 
