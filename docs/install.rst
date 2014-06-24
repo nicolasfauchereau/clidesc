@@ -170,6 +170,14 @@ in a terminal it should return the version of PostgreSQL. If something
 goes wrong here, please refer to `the psycopg installation
 documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
+``psycopg2`` can be installed in two ways:
+
+1. The recommended way, using conda third party channels:
+
+   conda install -c https://conda.binstar.org/dan\_blanchard psycopg2
+
+2. Installing from sources:
+
 The sources (tar.gz file) for psycopg2 need to be downloaded from `The
 psycopg download page <http://initd.org/psycopg/download/>`_
 

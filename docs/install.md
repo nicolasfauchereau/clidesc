@@ -101,6 +101,14 @@ One of the requirement is that ```pg_config``` should be in the system PATH, i.e
 
 in a terminal it should return the version of PostgreSQL. If something goes wrong here, please refer to [the psycopg installation documentation](http://initd.org/psycopg/docs/install.html#install-from-source)
 
+```psycopg2``` can be installed in two ways: 
+
+1. The recommended way, using conda third party channels: 
+        
+    conda install -c https://conda.binstar.org/dan_blanchard psycopg2
+
+2. Installing from sources: 
+
 The sources (tar.gz file) for psycopg2 need to be downloaded from [The psycopg download page](http://initd.org/psycopg/download/)
 
 Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz archive and enter:
