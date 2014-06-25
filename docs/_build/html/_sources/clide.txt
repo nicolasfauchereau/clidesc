@@ -5,11 +5,12 @@ Nicolas Fauchereau has written several helper functions in python, with
 the aim of mimicking the functions that are available in R from sourcing
 the ``common/clidesc.r`` file
 
-These functions are contained in the file ``clidesc/clide.py`` and (for
-now and until we create a conda package binstar)
+These functions are contained in the file ``clidesc/clide.py`` which
+(for now and until we create a conda package and host it on binstar)
+needs to be copied over to the same ``common`` directory.
 
-At the beginning of each script, one must import these functions (the
-equivalent of calling source() in a R script)
+At the beginning of each Python script, one must **import these
+functions** (the equivalent of calling source() in a R script)
 
 This is done by entering these lines:
 
@@ -28,10 +29,10 @@ This is done by entering these lines:
         from clide import * 
         conn = clide_open(base_path)
 
-which will have for effect to i) make all the functions implemented in
-clide.py available for calling from within the python script, ii) parse
-the command line arguments and iii) establish the connection to the
-CLIDE database (which will be contained in the conn object).
+which will have for effect to **i)** make all the functions implemented
+in clide.py available for calling from within the python script, **ii)**
+parse the command line arguments and **iii)** establish the connection
+to the CLIDE database (which will be contained in the conn object).
 
 These functions, their call sign and outputs are briefly described
 below: note that when returning a table (e.g. the result of a SQL query

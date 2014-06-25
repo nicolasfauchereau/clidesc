@@ -49,10 +49,11 @@
 <p>Nicolas Fauchereau has written several helper functions in python, with
 the aim of mimicking the functions that are available in R from sourcing
 the <tt class="docutils literal"><span class="pre">common/clidesc.r</span></tt> file</p>
-<p>These functions are contained in the file <tt class="docutils literal"><span class="pre">clidesc/clide.py</span></tt> and (for
-now and until we create a conda package binstar)</p>
-<p>At the beginning of each script, one must import these functions (the
-equivalent of calling source() in a R script)</p>
+<p>These functions are contained in the file <tt class="docutils literal"><span class="pre">clidesc/clide.py</span></tt> which
+(for now and until we create a conda package and host it on binstar)
+needs to be copied over to the same <tt class="docutils literal"><span class="pre">common</span></tt> directory.</p>
+<p>At the beginning of each Python script, one must <strong>import these
+functions</strong> (the equivalent of calling source() in a R script)</p>
 <p>This is done by entering these lines:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
@@ -68,10 +69,10 @@ equivalent of calling source() in a R script)</p>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">clide_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>which will have for effect to i) make all the functions implemented in
-clide.py available for calling from within the python script, ii) parse
-the command line arguments and iii) establish the connection to the
-CLIDE database (which will be contained in the conn object).</p>
+<p>which will have for effect to <strong>i)</strong> make all the functions implemented
+in clide.py available for calling from within the python script, <strong>ii)</strong>
+parse the command line arguments and <strong>iii)</strong> establish the connection
+to the CLIDE database (which will be contained in the conn object).</p>
 <p>These functions, their call sign and outputs are briefly described
 below: note that when returning a table (e.g. the result of a SQL query
 to the clide database) this table is a Pandas DataFrame object, which is
