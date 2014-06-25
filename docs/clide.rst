@@ -37,5 +37,6 @@ to the CLIDE database (which will be contained in the conn object).
 
 These functions, their call sign and outputs are briefly described
 below: note that when returning a table (e.g. the result of a SQL query
-to the clide database) this table is a Pandas DataFrame object, which is
-similar to (but more efficient than!) a R dataframe
+to the clide database) this table is a `Pandas
+DataFrame <http://pandas.pydata.org/pandas-docs/dev/dsintro.html#dataframe>`_
+object, which is similar to (but more efficient than!) a R dataframe
