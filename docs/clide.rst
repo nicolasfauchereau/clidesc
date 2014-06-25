@@ -39,4 +39,11 @@ These functions, their call sign and outputs are briefly described
 below: note that when returning a table (e.g. the result of a SQL query
 to the clide database) this table is a `Pandas
 DataFrame <http://pandas.pydata.org/pandas-docs/dev/dsintro.html#dataframe>`_
-object, which is similar to (but more efficient than!) a R dataframe
+object, which is similar to (but more efficient than!) a R dataframe,
+and makes slicing, columns or row selection, resampling etc extremely
+convenient. When time-series are returned, the index of the dataframe
+(i.e. the ‘rows’ identifier) is a `Pandas datetime
+index <http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DatetimeIndex.html>`_
+object resulting from the conversion of the ``lsd`` field to a python
+datetime object and setting it as the index for the DataFrame. The name
+of the index is invariably ``timestamp``.
