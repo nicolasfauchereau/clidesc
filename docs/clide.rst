@@ -5,9 +5,10 @@ Nicolas Fauchereau has written several helper functions in python, with
 the aim of mimicking the functions that are available in R from sourcing
 the ``common/clidesc.r`` file
 
-These functions are contained in the file ``clidesc/clide.py`` which
-(for now and until we create a conda package and host it on binstar)
-needs to be copied over to the same ``common`` directory.
+These functions are contained in the file ``clidesc/common/clide.py``
+which (for now and until we create a conda package and host it on
+`binstar <https://binstar.org/nicolasfauchereau>`_) needs to be copied
+over to the same ``common`` directory.
 
 At the beginning of each Python script, one must **import these
 functions** (the equivalent of calling source() in a R script)
