@@ -46,6 +46,85 @@
         
   <div class="section" id="module-clide">
 <span id="documentation-for-the-code"></span><h1>Documentation for the code<a class="headerlink" href="#module-clide" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="clide.clidesc_Figure">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_Figure</tt><big>(</big><em>size='A4'</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_Figure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_Figure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes figures (f) and axes (ax) with correct 
+figure size and dpi value for: 
+&#8216;A4&#8217; (default)
+&#8216;A5&#8217;
+&#8216;16/12in&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_Obs">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_Obs</tt><big>(</big><em>conn</em>, <em>table</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_Obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_Obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the given observations table for the requested stations, date range and columns
+depends on an open clidDB connection clideDB</p>
+<p>Usage:
+table = clidesc_Obs(conn, &#8220;obs_subdaily&#8221;, channels, stations, from_date, to_date)
+Currently no parameter checking.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_ObsDaily">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_ObsDaily</tt><big>(</big><em>conn</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_ObsDaily"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_ObsDaily" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the daily observations table for the requested stations, date range and columns
+depends on an open clidDB connection clideDB</p>
+<p>Usage:
+table = clidesc_ObsDaily(clideDB, channels, stations, from_date, to_date )
+Currently no parameter checking.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_ObsSubDaily">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_ObsSubDaily</tt><big>(</big><em>conn</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_ObsSubDaily"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_ObsSubDaily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read channels for stations (stations) from the obs_subdaily table
+usage:
+table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_close">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_close</tt><big>(</big><em>base_path</em>, <em>conn</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>docstring for clides</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_getStationsByCountry">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_getStationsByCountry</tt><big>(</big><em>conn</em>, <em>country</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_getStationsByCountry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_getStationsByCountry" title="Permalink to this definition">¶</a></dt>
+<dd><p>gets all the station details for all stations in a given country code (single or vector).
+It opens the connection, reads the stations table
+country must be a string, with country codes (if more than one) separated by &#8216;,&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_open">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_open</tt><big>(</big><em>base_path</em>, <em>database='clideDB'</em>, <em>user='XXXX'</em>, <em>password='XXXX'</em>, <em>dbhost='localhost'</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_open" title="Permalink to this definition">¶</a></dt>
+<dd><p>OPEN the ClideDB database and the progress file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_rain24h">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_rain24h</tt><big>(</big><em>conn</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_rain24h"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_rain24h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to read the rain_24h channel from the obs_daily table</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.clidesc_stations">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_stations</tt><big>(</big><em>conn</em>, <em>station_no</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_stations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_stations" title="Permalink to this definition">¶</a></dt>
+<dd><p>gets all the station details for a station number
+It opens the connection, reads the stations table
+station_no is a string, with stations separated by &#8216;,&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clide.cm2inch">
+<tt class="descclassname">clide.</tt><tt class="descname">cm2inch</tt><big>(</big><em>*tupl</em><big>)</big><a class="reference internal" href="_modules/clide.html#cm2inch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.cm2inch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A little function that converts cm in inches
+It is used in &#8216;clidesc_Figure&#8217;</p>
+</dd></dl>
+
 </div>
 
 
