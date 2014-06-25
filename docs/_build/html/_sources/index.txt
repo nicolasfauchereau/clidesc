@@ -15,6 +15,8 @@ Contents:
    install
    clide
 
+   modules
+
 
 Indices and tables
 ==================
