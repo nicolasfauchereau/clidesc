@@ -1,12 +1,3 @@
-"""
-.. module:: clide
-  :platform:: Unix, Linux
-  :synopsis:: Module to interface to the CLIDE database
-
-.. moduleauthor:: Nicolas Fauchereau <Nicolas.Fauchereau@gmail.com>
-
-"""
-
 import os, sys
 from datetime import datetime
 from dateutil import parser
@@ -228,9 +219,9 @@ def clidesc_Figure(size='A4'):
     """
     Initializes figures (f) and axes (ax) with correct 
     figure size and dpi value for: 
-        'A4' (default)
-        'A5'
-        '16/12in'
+    'A4' (default)
+    'A5'
+    '16/12in'
     """
     if size == 'A4':
         figsize = cm2inch((29.7,21.0))
