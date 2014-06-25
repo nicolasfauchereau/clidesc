@@ -1,9 +1,11 @@
-# clide.py
+"""
+.. module:: clide
+  :platform:: Unix, Linux
+  :synopsis:: Module to interface to the CLIDE database
 
-# PROJECT: CLIDESC
-# Author: Nicolas Fauchereau, NIWA
-# Date: March 2014
-# Access functions for the CLIDE database
+.. moduleauthor:: Nicolas Fauchereau <Nicolas.Fauchereau@gmail.com>
+
+"""
 
 import os, sys
 from datetime import datetime
