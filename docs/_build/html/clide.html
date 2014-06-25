@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting data out of CLIDE &mdash; CLIDEsc 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CLIDEsc 1 documentation" href="index.html" />
+    <link rel="prev" title="Python installation instructions for CLIDEsc" href="install.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>CLIDEsc 1 documentation</span></a></h1>
+        <h2 class="heading"><span>Getting data out of CLIDE</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="install.html">Python installation instructions for CLIDEsc</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="getting-data-out-of-clide">
+<h1>Getting data out of CLIDE<a class="headerlink" href="#getting-data-out-of-clide" title="Permalink to this headline">¶</a></h1>
+<p>Nicolas Fauchereau has written several helper functions in python, with
+the aim of mimicking the functions that are available in R from sourcing
+the <tt class="docutils literal"><span class="pre">common/clidesc.r</span></tt> file</p>
+<p>These functions are contained in the file <tt class="docutils literal"><span class="pre">clidesc/clide.py</span></tt> and (for
+now and until we create a conda package binstar)</p>
+<p>At the beginning of each script, one must import these functions (the
+equivalent of calling source() in a R script)</p>
+<p>This is done by entering these lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="n">Local</span> <span class="o">=</span> <span class="bp">False</span> <span class="c"># set to True for testing purposes</span>
+
+<span class="k">if</span> <span class="n">local</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;../common&#39;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">clide</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">source_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s">&#39;../common&#39;</span><span class="p">))</span>
+    <span class="kn">from</span> <span class="nn">clide</span> <span class="kn">import</span> <span class="o">*</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">clide_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which will have for effect to i) make all the functions implemented in
+clide.py available for calling from within the python script, ii) parse
+the command line arguments and iii) establish the connection to the
+CLIDE database (which will be contained in the conn object).</p>
+<p>These functions, their call sign and outputs are briefly described
+below: note that when returning a table (e.g. the result of a SQL query
+to the clide database) this table is a Pandas DataFrame object, which is
+similar to (but more efficient than!) a R dataframe</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="install.html">Python installation instructions for CLIDEsc</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Nicolas Fauchereau, Andrew Watkins, Alan Porteous (NIWA Ltd.).
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

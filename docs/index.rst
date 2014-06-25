@@ -13,6 +13,7 @@ Contents:
 
    A brief description of CLIDEsc <description>
    install
+   clide
 
 
 Indices and tables
