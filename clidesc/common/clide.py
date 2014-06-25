@@ -47,13 +47,13 @@ def clidesc_progress_add(progress_count):
     pass
 
 ###########################################################################
-def clidesc_open(base_path):
+def clidesc_open(base_path, database="clideDB", user="XXXX", password="XXXX", dbhost='localhost'):
     """
     OPEN the ClideDB database and the progress file 
     """
     clidesc_progress(base_path, 0)
     try:
-        conn = psycopg2.connect(database="clideDB", user="clidegui", password="clidepass", host=dbhost)
+        conn = psycopg2.connect(database=database, user=user, password=password, host=dbhost)
         clidesc_progress(base_path, 1)
         return conn
     except: 
