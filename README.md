@@ -9,4 +9,4 @@ This repository contains the **Python component of CLIDEsc**, including a module
 to perform common tasks (e.g. calculate monthly statistics from daily or sub-daily data) and self-contained example python scripts that implement
 climate services.
 
-This is very young project, with a structure and scope likely to undergo rapid changes, questions and comments should be addressed to [Nicolas Fauchereau](mailto:nicolas.fauchereau@niwa.co.nz)
+NOTE: This is very young project, with a structure and scope likely to undergo rapid changes, questions and comments should be addressed to [Nicolas Fauchereau](mailto:nicolas.fauchereau@niwa.co.nz)
