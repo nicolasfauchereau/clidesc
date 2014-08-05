@@ -26,27 +26,38 @@ print("Programme: DroughtMonitoring.py\n")
 local = False
 
 ### ===========================================================================
+### defines minimum year (station needs to have been opened before that date)
+### ===========================================================================
+min_year = 1972
+
+### ===========================================================================
 ### defines the window (days)
 ### ===========================================================================
-
 window = 90
+
+### ===========================================================================
+### defines the minimum percentage of obs to calculate an avearge in the window
+### ===========================================================================
+min_per = 0.6
 
 ### ===========================================================================
 ### defines the `alert` levels (in percentage of normal)
 ### ===========================================================================
-
 level_1 = 60
 level_2 = 30
 
-# System date
+# prints the system date
 print("Date: %s\n" % ( time.strftime("%d-%m-%Y") ))
 
 ### ===========================================================================
-# CLIDESC utilities
+# CLIDE utilities
 ### ===========================================================================
 if local:
     sys.path.append('../common')
+    # clide: the interface to clide itself
     from clide import *
+    # utils: some utility functions
+    from utils import *
 else:
     # source path from the absolute path containing the script
     source_path = os.path.dirname(os.path.realpath(sys.argv[0]))
@@ -63,7 +74,7 @@ else:
 # STATION DETAILS
 ### ===========================================================================
 if local:
-    sName = 'Apia'
+    sName = 'Station_Name'
 else:
     station = clidesc_stations(conn, stations)
     # get the primary name 
@@ -74,7 +85,7 @@ else:
 ### ===========================================================================
 # tests the opening data of the station
 ### ===========================================================================
-if pd.to_datetime(sDate)[0] > datetime(1972,1,1):
+if pd.to_datetime(sDate) > datetime(min_year,1,1):
     print("! WARNING, the station has been opened after 1972, not enough data to calculate normals\n")
     sys.exit(1)
 
@@ -88,12 +99,12 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, stations, '1972-1-1', to_date)
+    iData = clidesc_rain24h(conn, stations, datetime(min_year, 1 1).strftime("%Y-%m-%d"), to_date)
 
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex 
 
-daterange = pd.period_range(start = '1972-1-1', end = to_date, freq = 'D').to_datetime()
+daterange = pd.period_range(start = datetime(min_year, 1 1).strftime("%Y-%m-%d"), end = to_date, freq = 'D').to_datetime()
 
 iData = iData.reindex(daterange)
 
@@ -101,9 +112,7 @@ iData = iData.reindex(daterange)
 ### calculates the rolling cumulative rainfall over the period
 ### ===========================================================================
 
-min_periods = np.int(np.floor(0.6 * window))
-smooth_periods = np.int(np.floor(0.1 * window))
-
+min_periods = np.int(np.floor(min_per * window))
 datars = pd.rolling_sum(iData[['rain_24h']], window, min_periods=min_periods)
 
 ### ===========================================================================
