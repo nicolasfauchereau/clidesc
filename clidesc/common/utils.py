@@ -46,11 +46,18 @@ def conform_calendar(df, freq='D'):
     pass
 
 ################################################################
-def calc_monthly_stat(df, min_periods = 0.7, stat = 'mean'):
+def calc_monthly_stat(df, min_periods = 20, stat = 'mean'):
     """
-    calc_monthly_stat(df, min_periods = 0.7, stat = 'mean'):
+    calc_monthly_stat(df, min_periods = 20, stat = 'mean'):
     """
-    pass
+    if pd.isnull(x).sum() <= minvals:
+        if stat == 'mean':
+            z = x.mean()
+        if stat == 'sum':
+            z = x.sum()
+    else:
+        z = np.NaN
+    return z
 
 ################################################################
 def calc_daily_stat(df, min_periods = 0.7, stat = 'mean'):
