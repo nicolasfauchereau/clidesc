@@ -6,6 +6,8 @@
 # PROJECT: Integrating climate change risks in agriculture and health sectors in Samoa
 # Author: Nicolas Fauchereau, NIWA
 # Date: August 2014
+# can test using: 
+# `./DroughtMonitoring.py base_path stations from_date to_date` 
 
 ### ===========================================================================
 # imports
