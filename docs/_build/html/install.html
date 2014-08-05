@@ -167,11 +167,11 @@ to be installed via <a class="reference external" href="https://github.com/pypa/
 <div class="section" id="psycopg2-interface-to-the-clide-database">
 <h2>psycopg2: interface to the <a class="reference external" href="http://www.bom.gov.au/climate/pacific/about-clide.shtml">CLIDE</a> database<a class="headerlink" href="#psycopg2-interface-to-the-clide-database" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a> provides the interface to
-the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database and needs
-to be installed separately from sources, as it is not part of the
-libraries available through the conda package manager.</p>
-<p>One of the requirement is that <tt class="docutils literal"><span class="pre">pg_config</span></tt> should be in the system
-PATH, i.e. if you type:</p>
+the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database. It is not
+part of the libraries distributed with <a href="#id13"><span class="problematic" id="id14">`anaconda &lt;&gt;`_</span></a>, but can be
+installed using <a class="reference external" href="www.binstar.org">binstar</a> channel or from sources.</p>
+<p>Before installing <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a>, make sure
+that <tt class="docutils literal"><span class="pre">pg_config</span></tt> is in the system PATH, i.e. if you type:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ pg_config --version
 </pre></div>
 </div>

@@ -93,9 +93,9 @@ A few other libraries need to be installed in order to make the most of the Pyth
 
 ## psycopg2: interface to the [CLIDE](http://www.bom.gov.au/climate/pacific/about-clide.shtml) database
 
-The [psycopg2](http://initd.org/psycopg/) provides the interface to the Clide [PostgreSQL](http://www.postgresql.org/) database and needs to be installed separately from sources, as it is not part of the libraries available through the conda package manager. 
+The [psycopg2](http://initd.org/psycopg/) provides the interface to the Clide [PostgreSQL](http://www.postgresql.org/) database. It is not part of the libraries distributed with [anaconda](), but can be installed using [binstar](www.binstar.org) channel or from sources. 
 
-One of the requirement is that ```pg_config``` should be in the system PATH, i.e. if you type:
+Before installing [psycopg2](http://initd.org/psycopg/), make sure that ```pg_config``` is in the system PATH, i.e. if you type:
 
     $ pg_config --version 
 

@@ -155,12 +155,12 @@ psycopg2: interface to the `CLIDE <http://www.bom.gov.au/climate/pacific/about-c
 ------------------------------------------------------------------------------------------------------
 
 The `psycopg2 <http://initd.org/psycopg/>`_ provides the interface to
-the Clide `PostgreSQL <http://www.postgresql.org/>`_ database and needs
-to be installed separately from sources, as it is not part of the
-libraries available through the conda package manager.
+the Clide `PostgreSQL <http://www.postgresql.org/>`_ database. It is not
+part of the libraries distributed with `anaconda <>`_, but can be
+installed using `binstar <www.binstar.org>`_ channel or from sources.
 
-One of the requirement is that ``pg_config`` should be in the system
-PATH, i.e. if you type:
+Before installing `psycopg2 <http://initd.org/psycopg/>`_, make sure
+that ``pg_config`` is in the system PATH, i.e. if you type:
 
 ::
 

@@ -59,16 +59,16 @@
 
 <span class="c">###########################################################################</span>
 <span class="c"># get the command line parameters</span>
-<span class="c"># we add some testing to the length of the passed parameters first </span>
+<span class="c"># we add some testing to the length of the passed parameters first</span>
 <span class="c"># that is in order to allow stand-alone non standard scripts to be developed</span>
 <span class="c"># (e.g. the ICU one ...)</span>
 
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span> 
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
     <span class="n">base_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c"># base path is the path where the outputs, progress files and figures are saved</span>
-    <span class="n">station_list</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c"># list of stations, assumes string is passed, and comma is the separator </span>
-    <span class="n">from_date</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c"># from date: transform into a datetime object </span>
+    <span class="n">stations</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c"># list of stations, assumes string is passed, and comma is the separator</span>
+    <span class="n">from_date</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c"># from date: transform into a datetime object</span>
     <span class="n">from_date</span> <span class="o">=</span> <span class="n">from_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span> <span class="c"># and format correctly just in case the date wasnt entered YYYY-MM-DD</span>
-    <span class="n">to_date</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="c"># to date: idem </span>
+    <span class="n">to_date</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="c"># to date: idem</span>
     <span class="n">to_date</span> <span class="o">=</span> <span class="n">to_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span>
     <span class="n">station_no</span> <span class="o">=</span> <span class="n">station_list</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c"># assumes the first station is the &#39;primary&#39; station</span>
 
@@ -76,8 +76,8 @@
 <span class="n">progress_count</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="c">###########################################################################</span>
-<span class="k">def</span> <span class="nf">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span> 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span><span class="s">&#39;progress.txt&#39;</span><span class="p">),</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
+<span class="k">def</span> <span class="nf">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span><span class="s">&#39;progress.txt&#39;</span><span class="p">),</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">percent</span> <span class="p">)</span> <span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -87,48 +87,48 @@
 <span class="c">###########################################################################</span>
 <div class="viewcode-block" id="clidesc_open"><a class="viewcode-back" href="../modules.html#clide.clidesc_open">[docs]</a><span class="k">def</span> <span class="nf">clidesc_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&quot;clideDB&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;XXXX&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;XXXX&quot;</span><span class="p">,</span> <span class="n">dbhost</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OPEN the ClideDB database and the progress file </span>
+<span class="sd">    OPEN the ClideDB database and the progress file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">dbhost</span><span class="p">)</span>
         <span class="n">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">conn</span>
-    <span class="k">except</span><span class="p">:</span> 
+    <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n\n</span><span class="s">ERROR!: Unable to establish the connection to the database</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
 
 <span class="c">################################################################</span></div>
-<div class="viewcode-block" id="clidesc_stations"><a class="viewcode-back" href="../modules.html#clide.clidesc_stations">[docs]</a><span class="k">def</span> <span class="nf">clidesc_stations</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">station_no</span><span class="p">):</span> 
+<div class="viewcode-block" id="clidesc_stations"><a class="viewcode-back" href="../modules.html#clide.clidesc_stations">[docs]</a><span class="k">def</span> <span class="nf">clidesc_stations</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">stations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gets all the station details for a station number</span>
 <span class="sd">    It opens the connection, reads the stations table</span>
 <span class="sd">    station_no is a string, with stations separated by &#39;,&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">station_no</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">station_no</span><span class="p">:</span> 
-        <span class="n">station_no</span> <span class="o">=</span> <span class="n">station_no</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">,</span><span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">,</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">:</span>
+        <span class="n">stations</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">,</span><span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">,</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="p">)</span>
 
-    <span class="c"># builds the query string </span>
-    <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;SELECT * FROM stations WHERE station_no IN (&#39;</span><span class="si">%s</span><span class="s">&#39;) ORDER BY station_no&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">station_no</span><span class="p">)</span>
+    <span class="c"># builds the query string</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;SELECT * FROM stations WHERE station_no IN (&#39;</span><span class="si">%s</span><span class="s">&#39;) ORDER BY station_no&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stations</span><span class="p">)</span>
 
-    <span class="c"># get the table returned by the query as a pandas dataframe </span>
+    <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">table</span>
 
 <span class="c">################################################################</span></div>
-<div class="viewcode-block" id="clidesc_getStationsByCountry"><a class="viewcode-back" href="../modules.html#clide.clidesc_getStationsByCountry">[docs]</a><span class="k">def</span> <span class="nf">clidesc_getStationsByCountry</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">country</span><span class="p">):</span> 
+<div class="viewcode-block" id="clidesc_getStationsByCountry"><a class="viewcode-back" href="../modules.html#clide.clidesc_getStationsByCountry">[docs]</a><span class="k">def</span> <span class="nf">clidesc_getStationsByCountry</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">country</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gets all the station details for all stations in a given country code (single or vector).</span>
 <span class="sd">    It opens the connection, reads the stations table</span>
 <span class="sd">    country must be a string, with country codes (if more than one) separated by &#39;,&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">country</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">country</span><span class="p">:</span>
         <span class="n">country</span> <span class="o">=</span> <span class="n">country</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">,</span><span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">,</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="p">)</span>
 
     <span class="c"># builds the query string</span>
     <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;SELECT * FROM stations WHERE country_code IN (&#39;</span><span class="si">%s</span><span class="s">&#39;) ORDER BY country_code, station_no&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">country</span> <span class="p">)</span>
-    <span class="c"># get the table returned by the query as a pandas dataframe </span>
+    <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">table</span>
 
@@ -151,15 +151,15 @@
 
     <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">    SELECT station_no, TO_CHAR(lsd, &#39;yyyy-mm-dd&#39;) as LSD,</span>
-<span class="s">    </span><span class="si">%s</span><span class="s"> FROM obs_daily WHERE station_no IN (&#39;</span><span class="si">%s</span><span class="s">&#39;) AND lsd &gt;= TO_TIMESTAMP(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;yyyy-mm-dd&#39;) </span>
+<span class="s">    </span><span class="si">%s</span><span class="s"> FROM obs_daily WHERE station_no IN (&#39;</span><span class="si">%s</span><span class="s">&#39;) AND lsd &gt;= TO_TIMESTAMP(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;yyyy-mm-dd&#39;)</span>
 <span class="s">    AND lsd &lt;= TO_TIMESTAMP(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;yyyy-mm-dd&#39;) ORDER BY lsd&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">)</span>
 
-    <span class="c"># get the table returned by the query as a pandas dataframe </span>
+    <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly </span>
+    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
     <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
     <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
     <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
@@ -197,12 +197,12 @@
 <span class="s">    AND lsd &lt;= TO_TIMESTAMP(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;yyyy-mm-dd&#39;)</span>
 <span class="s">    ORDER BY lsd&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">)</span>
 
-    <span class="c"># get the table returned by the query as a pandas dataframe </span>
+    <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly </span>
+    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
     <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
     <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
     <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
@@ -235,64 +235,26 @@
 <span class="s">    AND lsd &lt;= TO_TIMESTAMP(&#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;yyyy-mm-dd&#39;)</span>
 <span class="s">    ORDER BY lsd&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">)</span>
 
-    <span class="c"># get the table returned by the query as a pandas dataframe </span>
+    <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly </span>
+    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
     <span class="c"># cast to pandas datetime index and named &#39;datetime&#39;</span>
     <span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
     <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
 
     <span class="k">return</span> <span class="n">data</span>
 
-<span class="c">################################################################</span></div>
-<div class="viewcode-block" id="cm2inch"><a class="viewcode-back" href="../modules.html#clide.cm2inch">[docs]</a><span class="k">def</span> <span class="nf">cm2inch</span><span class="p">(</span><span class="o">*</span><span class="n">tupl</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A little function that converts cm in inches</span>
-<span class="sd">    It is used in &#39;clidesc_Figure&#39;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">inch</span> <span class="o">=</span> <span class="mf">2.54</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">tupl</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">inch</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tupl</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">()</span>
-
-<span class="c">################################################################</span></div>
-<div class="viewcode-block" id="clidesc_Figure"><a class="viewcode-back" href="../modules.html#clide.clidesc_Figure">[docs]</a><span class="k">def</span> <span class="nf">clidesc_Figure</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;A4&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Initializes figures (f) and axes (ax) with correct </span>
-<span class="sd">    figure size and dpi value for: </span>
-<span class="sd">    &#39;A4&#39; (default)</span>
-<span class="sd">    &#39;A5&#39;</span>
-<span class="sd">    &#39;16/12in&#39;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="s">&#39;A4&#39;</span><span class="p">:</span>
-        <span class="n">figsize</span> <span class="o">=</span> <span class="n">cm2inch</span><span class="p">((</span><span class="mf">29.7</span><span class="p">,</span><span class="mf">21.0</span><span class="p">))</span>
-        <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">size</span> <span class="o">==</span> <span class="s">&#39;A5&#39;</span><span class="p">:</span>
-        <span class="n">figsize</span> <span class="o">=</span> <span class="n">cm2inch</span><span class="p">((</span><span class="mf">29.7</span><span class="p">,</span><span class="mf">21.0</span><span class="p">))</span>
-        <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">size</span> <span class="o">==</span> <span class="s">&#39;16/12in&#39;</span><span class="p">:</span>
-        <span class="n">figsize</span> <span class="o">=</span> <span class="n">cm2inch</span><span class="p">((</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
-        <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">ax</span>
-
-<span class="c">################################################################</span></div>
-<span class="k">def</span> <span class="nf">make_thumbnail</span><span class="p">(</span><span class="n">srcfile</span><span class="p">,</span> <span class="n">thumbfile</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">srcfile</span><span class="p">)</span> <span class="k">as</span> <span class="n">im</span><span class="p">:</span> 
-        <span class="n">im</span><span class="o">.</span><span class="n">thumbnail</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>
-        <span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">thumbfile</span><span class="p">)</span>
-
 <span class="c">################################################################</span>
 <span class="c"># CLOSE</span>
 <span class="c"># Closes the connection &amp;&amp; Frees all the resources on the driver</span>
-
+</div>
 <div class="viewcode-block" id="clidesc_close"><a class="viewcode-back" href="../modules.html#clide.clidesc_close">[docs]</a><span class="k">def</span> <span class="nf">clidesc_close</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">conn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;docstring for clides&quot;&quot;&quot;</span>
     <span class="n">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">closed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">closed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 </pre></div>
 
