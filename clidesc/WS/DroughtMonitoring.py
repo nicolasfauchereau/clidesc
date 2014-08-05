@@ -65,13 +65,16 @@ else:
 if local:
     sName = 'Apia'
 else:
-    station = clidesc_stations(conn, station_list)
+    station = clidesc_stations(conn, stations)
     # get the primary name 
     sName = station['name_primary']
     # get the start date
-    sDate = station['start_date']
+    sDate = station['start_date'][0]
 
-if pd.to_datetime(sDate) > datetime(1972,1,1):
+### ===========================================================================
+# tests the opening data of the station
+### ===========================================================================
+if pd.to_datetime(sDate)[0] > datetime(1972,1,1):
     print("! WARNING, the station has been opened after 1972, not enough data to calculate normals\n")
     sys.exit(1)
 
@@ -85,7 +88,7 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, station_list, '1972-1-1', to_date)
+    iData = clidesc_rain24h(conn, stations, '1972-1-1', to_date)
 
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex 

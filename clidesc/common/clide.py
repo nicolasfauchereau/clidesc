@@ -25,7 +25,7 @@ if len(sys.argv) == 5:
     from_date = from_date.strftime('%Y-%m-%d') # and format correctly just in case the date wasnt entered YYYY-MM-DD
     to_date = parser.parse(sys.argv[4]) # to date: idem
     to_date = to_date.strftime('%Y-%m-%d')
-    station_no = station_list.split(',')[0] # assumes the first station is the 'primary' station
+    station_no = stations.split(',')[0] # assumes the first station is the 'primary' station
 
 # Manage the progress file
 progress_count = 0
