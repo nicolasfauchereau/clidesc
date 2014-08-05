@@ -20,7 +20,7 @@ dbhost = 'localhost'
 
 if len(sys.argv) == 5:
     base_path = sys.argv[1] # base path is the path where the outputs, progress files and figures are saved
-    station_list = sys.argv[2] # list of stations, assumes string is passed, and comma is the separator
+    stations = sys.argv[2] # list of stations, assumes string is passed, and comma is the separator
     from_date = parser.parse(sys.argv[3]) # from date: transform into a datetime object
     from_date = from_date.strftime('%Y-%m-%d') # and format correctly just in case the date wasnt entered YYYY-MM-DD
     to_date = parser.parse(sys.argv[4]) # to date: idem
@@ -53,18 +53,18 @@ def clidesc_open(base_path, database="clideDB", user="XXXX", password="XXXX", db
         print('\n\nERROR!: Unable to establish the connection to the database\n\n')
 
 ################################################################
-def clidesc_stations(conn, station_no):
+def clidesc_stations(conn, stations):
     """
     gets all the station details for a station number
     It opens the connection, reads the stations table
     station_no is a string, with stations separated by ','
     """
 
-    if isinstance(station_no, str) and ',' in station_no:
-        station_no = station_no.replace(',','\',\'')
+    if isinstance(stations, str) and ',' in stations:
+        stations = stations.replace(',','\',\'')
 
     # builds the query string
-    query = """SELECT * FROM stations WHERE station_no IN ('%s') ORDER BY station_no""" % (station_no)
+    query = """SELECT * FROM stations WHERE station_no IN ('%s') ORDER BY station_no""" % (stations)
 
     # get the table returned by the query as a pandas dataframe
     table = psql.frame_query(query, conn)
