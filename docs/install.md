@@ -103,19 +103,17 @@ in a terminal it should return the version of PostgreSQL. If something goes wron
 
 `psycopg2` can be installed in two ways:
 
-1. The recommended way:
-
-We make use of [Dan Blanchard](http://dan-blanchard.github.io/)'s channel for psycopg2
+1. We can make use of [Dan Blanchard](http://dan-blanchard.github.io/)'s channel for psycopg2
 
     $ conda install -c https://conda.binstar.org/dan_blanchard psycopg2
 
 2. Installing from sources:
 
-If you want to install from sources, the psycopg2 archive (tar.gz) needs to be downloaded from [The psycopg download page](http://initd.org/psycopg/download/)
+If the above method fails, you need to install from sources, the psycopg2 archive (tar.gz) needs to be downloaded from [The psycopg download page](http://initd.org/psycopg/download/)
 
-Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz archive and enter:  
+Once downloaded, cd where you downloaded the psycopg2 archive and enter:  
 
-    $ tar –zxvf psycopg2-2.5.2.tar.gz
+    $ tar –zxvf psycopg2-2.5.2.tar.gz (*! your version numbers might differ*)
 
 then:
 

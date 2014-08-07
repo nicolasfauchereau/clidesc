@@ -112,8 +112,9 @@ installation and update of third party modules) by entering</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda update anaconda
 </pre></div>
 </div>
-<p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to install
-packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package Index</a>.</p>
+<p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to
+install packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package
+Index</a>.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ conda install pip
 </pre></div>
 </div>
@@ -131,32 +132,32 @@ maps in the browser</li>
 <li><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>: to
 create sophisticated statistical visualisations</li>
 </ul>
-<div class="section" id="id1">
-<h3>Basemap<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="basemap">
+<h3>Basemap<a class="headerlink" href="#basemap" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://matplotlib.org/basemap/">Basemap</a> is part of the Anaconda
 Python distribution and can be installed by:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda install basemap
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>Vincent<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="vincent">
+<h3>Vincent<a class="headerlink" href="#vincent" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://vincent.readthedocs.org/en/latest/">vincent</a> is to be
 installed using <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install vincent
 </pre></div>
 </div>
 </div>
-<div class="section" id="id6">
-<h3>Folium<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="folium">
+<h3>Folium<a class="headerlink" href="#folium" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/wrobstory/folium">folium</a>, similarly install via
 <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install folium
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>Seaborn<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="seaborn">
+<h3>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a> is also
 to be installed via <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install seaborn
@@ -167,8 +168,8 @@ to be installed via <a class="reference external" href="https://github.com/pypa/
 <div class="section" id="psycopg2-interface-to-the-clide-database">
 <h2>psycopg2: interface to the <a class="reference external" href="http://www.bom.gov.au/climate/pacific/about-clide.shtml">CLIDE</a> database<a class="headerlink" href="#psycopg2-interface-to-the-clide-database" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a> provides the interface to
-the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database. It is not
-part of the libraries distributed with <a href="#id13"><span class="problematic" id="id14">`anaconda &lt;&gt;`_</span></a>, but can be
+the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database. It is
+not part of the libraries distributed with <a href="#id1"><span class="problematic" id="id2">`anaconda &lt;&gt;`__</span></a>, but can be
 installed using <a class="reference external" href="www.binstar.org">binstar</a> channel or from sources.</p>
 <p>Before installing <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a>, make sure
 that <tt class="docutils literal"><span class="pre">pg_config</span></tt> is in the system PATH, i.e. if you type:</p>
@@ -179,23 +180,19 @@ that <tt class="docutils literal"><span class="pre">pg_config</span></tt> is in 
 goes wrong here, please refer to <a class="reference external" href="http://initd.org/psycopg/docs/install.html#install-from-source">the psycopg installation
 documentation</a></p>
 <p><tt class="docutils literal"><span class="pre">psycopg2</span></tt> can be installed in two ways:</p>
-<ol class="arabic simple">
-<li>The recommended way:</li>
+<ol class="arabic">
+<li><p class="first">We can make use of <a class="reference external" href="http://dan-blanchard.github.io/">Dan
+Blanchard</a>&#8216;s channel for psycopg2</p>
+<p>$ conda install -c <a class="reference external" href="https://conda.binstar.org/dan_blanchard">https://conda.binstar.org/dan_blanchard</a> psycopg2</p>
+</li>
+<li><p class="first">Installing from sources:</p>
+</li>
 </ol>
-<p>We make use of <a class="reference external" href="http://dan-blanchard.github.io/">Dan Blanchard</a>&#8216;s
-channel for psycopg2</p>
-<div class="highlight-python"><div class="highlight"><pre>$ conda install -c https://conda.binstar.org/dan_blanchard psycopg2
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li>Installing from sources:</li>
-</ol>
-<p>If you want to install from sources, the psycopg2 archive (tar.gz) needs
-to be downloaded from <a class="reference external" href="http://initd.org/psycopg/download/">The psycopg download
-page</a></p>
-<p>Once downloaded, cd where you downloaded the psycopg2-2.5.2.tar.gz
-archive and enter:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ tar –zxvf psycopg2-2.5.2.tar.gz
+<p>If the above method fails, you need to install from sources, the
+psycopg2 archive (tar.gz) needs to be downloaded from <a class="reference external" href="http://initd.org/psycopg/download/">The psycopg
+download page</a></p>
+<p>Once downloaded, cd where you downloaded the psycopg2 archive and enter:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ tar –zxvf psycopg2-2.5.2.tar.gz (*! your version numbers might differ*)
 </pre></div>
 </div>
 <p>then:</p>
@@ -205,6 +202,23 @@ archive and enter:</p>
 <p>then install the module:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/python setup.py build
 $ /opt/anaconda/bin/python setup.py install
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-of-the-clidesc-application-layer-to-accept-the-python-language">
+<h2>Configuration of the clidesc application layer to accept the python language<a class="headerlink" href="#configuration-of-the-clidesc-application-layer-to-accept-the-python-language" title="Permalink to this headline">¶</a></h2>
+<p>In order to activate the Python language as an option for developing a
+climate service, one needs to modify the <tt class="docutils literal"><span class="pre">config.yml</span></tt> file that is
+located (usually) in <tt class="docutils literal"><span class="pre">/var/www/clidesc/app/config</span></tt>. On <strong>line 8</strong>, the
+parameter <tt class="docutils literal"><span class="pre">script_lang.python</span></tt> must point to the python binary
+installed by anaconda, example:</p>
+<div class="highlight-python"><div class="highlight"><pre>parameters:
+    processing_path:
+        python: &quot;/opt/anaconda/bin/python&quot;
+        R: &quot;/usr/bin/Rscript&quot;
+        R64: &quot;/usr/bin/Rscript --arch=x86_64&quot;
+        php: &quot;/usr/bin/php&quot;
+        perl: &quot;/usr/bin/perl&quot;
 </pre></div>
 </div>
 </div>
