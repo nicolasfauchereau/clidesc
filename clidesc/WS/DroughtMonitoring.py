@@ -43,8 +43,8 @@ min_per = 0.6
 ### ===========================================================================
 ### defines the `alert` levels (in percentage of normal)
 ### ===========================================================================
-level_1 = 60
-level_2 = 30
+level_1 = 40
+level_2 = 10
 
 # prints the system date
 print("Date: %s\n" % ( time.strftime("%d-%m-%Y") ))
@@ -78,7 +78,7 @@ if local:
 else:
     station = clidesc_stations(conn, stations)
     # get the primary name 
-    sName = station['name_primary']
+    sName = station['name_primary'][0]
     # get the start date
     sDate = station['start_date'][0]
 
@@ -238,4 +238,6 @@ leg = plt.legend([p1, p2, p3], ['< mean', '< 60%', '< 30%'],\
 leg.draw_frame(False)
 
 # saves the figure in png (dpi = 200)
-f.savefig(os.path.join(base_path,'drought_monitoring_{}days_{}.png'.format(window, station_no)), dpi=200)
+f.savefig(os.path.join(base_path,'drought_monitoring_{}days_{}.png'.format(window, sName)), dpi=200)
+
+clidesc_close(base_path, conn)
