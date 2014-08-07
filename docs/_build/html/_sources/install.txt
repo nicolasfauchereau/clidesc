@@ -96,7 +96,7 @@ Index <http://pypi.python.org/pypi>`__.
 
 ::
 
-    $ conda install pip
+    $ /opt/anaconda/bin/conda install pip
 
 Installation of additional libraries
 ------------------------------------
@@ -173,12 +173,14 @@ documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
 ``psycopg2`` can be installed in two ways:
 
-1. We can make use of `Dan
+1) We can make use of `Dan
    Blanchard <http://dan-blanchard.github.io/>`__'s channel for psycopg2
 
-   $ conda install -c https://conda.binstar.org/dan\_blanchard psycopg2
+::
 
-2. Installing from sources:
+    $ conda install -c https://conda.binstar.org/dan_blanchard psycopg2
+
+2) Installing from source:
 
 If the above method fails, you need to install from sources, the
 psycopg2 archive (tar.gz) needs to be downloaded from `The psycopg

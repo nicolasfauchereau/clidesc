@@ -115,7 +115,7 @@ installation and update of third party modules) by entering</p>
 <p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to
 install packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package
 Index</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ conda install pip
+<div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda install pip
 </pre></div>
 </div>
 </div>
@@ -180,13 +180,15 @@ that <tt class="docutils literal"><span class="pre">pg_config</span></tt> is in 
 goes wrong here, please refer to <a class="reference external" href="http://initd.org/psycopg/docs/install.html#install-from-source">the psycopg installation
 documentation</a></p>
 <p><tt class="docutils literal"><span class="pre">psycopg2</span></tt> can be installed in two ways:</p>
-<ol class="arabic">
-<li><p class="first">We can make use of <a class="reference external" href="http://dan-blanchard.github.io/">Dan
-Blanchard</a>&#8216;s channel for psycopg2</p>
-<p>$ conda install -c <a class="reference external" href="https://conda.binstar.org/dan_blanchard">https://conda.binstar.org/dan_blanchard</a> psycopg2</p>
-</li>
-<li><p class="first">Installing from sources:</p>
-</li>
+<ol class="arabic simple">
+<li>We can make use of <a class="reference external" href="http://dan-blanchard.github.io/">Dan
+Blanchard</a>&#8216;s channel for psycopg2</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre>$ conda install -c https://conda.binstar.org/dan_blanchard psycopg2
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Installing from source:</li>
 </ol>
 <p>If the above method fails, you need to install from sources, the
 psycopg2 archive (tar.gz) needs to be downloaded from <a class="reference external" href="http://initd.org/psycopg/download/">The psycopg

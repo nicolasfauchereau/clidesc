@@ -56,7 +56,7 @@ Then a good thing is to update the anaconda packages already installed
 
 You also need to install [pip](https://github.com/pypa/pip) to install packages from the [Python Package Index](http://pypi.python.org/pypi).
 
-    $ conda install pip
+    $ /opt/anaconda/bin/conda install pip
 
 ## Installation of additional libraries
 
