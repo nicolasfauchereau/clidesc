@@ -82,6 +82,7 @@ else:
     #loads the data from clide
     iData = clidesc_rain24h(conn, stations, from_date, to_date)
 
+
 """
 sorts the data in chronological order just in case
 """
@@ -118,30 +119,29 @@ def calcmonsum(x):
         z = np.NaN
     return z
 
+
 """
 Calculates monthly cumulative rainfall and index
 """
 mData = iData.groupby([iData.index.year, iData.index.month])[['rain_24h']].aggregate(calcmonsum)
 mData.index = [datetime(x[0],x[1],1) for x in mData.index.get_values()]
 
+
 """
 Calculates a monthly climatology
 """
 clim = mData.groupby(mData.index.month).mean()
+
 
 """
 calculates anomalies
 """
 mData['anoms'] =  mData[['rain_24h']] - np.resize(clim.values, mData.shape)
 
-f, ax = plt.subplots()
-mData['anoms'].plot(ax=ax)
-f.savefig(os.path.join(base_path, 'anoms_plot_{}.png'.format(sName)))
 
 """
 NOW READS THE Southern Oscillation Index from http://www.cgd.ucar.edu/cas/catalog/climind/SOI.signal.ascii
-
-NEEDS an internet connection
+!!! NEEDS an internet connection
 """
 
 try:
@@ -162,6 +162,7 @@ Calculates the 3 months rolling averages of the SOI and the Rainfall anomalies
 seasData = pd.rolling_mean(mData[['anoms','soi']], 3, min_periods=2)
 
 total_data = len(seasData.dropna())
+
 
 """
 Groups by month (season) and calculates R and p-value
