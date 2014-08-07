@@ -212,16 +212,15 @@ ax.set_ylabel("Pearson's R")
 ax.set_ylim(-Rmax, Rmax) 
 f.savefig(os.path.join(base_path, 'Barplot_SoiSeasonalRainfall_{}'.format(sName)))
 
-"""
-facet plot of the regressions between the SOI and the seasonal rainfall anomalies
-"""
-f, axes = plt.subplots(nrows=4, ncols=3, figsize=(10,14))
-
-f.subplots_adjust(bottom=0.1)
-
-axes = axes.flatten()
-
 if seaborn: 
+    """
+    facet plot of the regressions between the SOI and the seasonal rainfall anomalies
+    """
+    f, axes = plt.subplots(nrows=4, ncols=3, figsize=(10,14))
+
+    f.subplots_adjust(bottom=0.1)
+
+    axes = axes.flatten()
 
     for i, m in enumerate(np.arange(1,13)): 
         ax = axes[i]
