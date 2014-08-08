@@ -36,13 +36,40 @@ def clidesc_progress(base_path, percent):
         f.write("%s\n" % ( percent ) )
         f.close()
 
-def clidesc_progress_add(progress_count):
+def clidesc_progress_add(base_path, progress_count):
     pass
+
 
 ###########################################################################
 def clidesc_open(base_path, database="clideDB", user="XXX", password="XXX", dbhost='localhost'):
     """
-    OPEN the ClideDB database and the progress file
+    Open the ClideDB database and the progress file
+
+    Parameters
+    ----------
+
+    base_path : filesystem path
+        The base path where all the outputs etc are dumped
+
+    database : string
+        The name of the Database (ClideDB usually)
+
+    user : string
+        The username
+
+    password : string
+        The passowrd
+
+    dbhost : string
+        The host server name ('localhost' if clide is accessed
+        locally)
+
+    Return
+    ------
+
+    conn : db connection
+        A database connection object as returned by psycopg2.connect()
+
     """
     clidesc_progress(base_path, 0)
     try:
@@ -66,7 +93,7 @@ def clidesc_getColumns(conn, table):
 
     Return
     ------
-    columns : Pandas.Series
+    columns : Pandas.DataFrame
         A Pandas.Series containing the column names
 
     Usage
@@ -83,9 +110,27 @@ def clidesc_getColumns(conn, table):
 ################################################################
 def clidesc_stations(conn, stations):
     """
-    gets all the station details for a station number
+    Gets all the station details for a station number
     It opens the connection, reads the stations table
     station_no is a string, with stations separated by ','
+
+    Parameters
+    ----------
+
+    conn : db connection
+        Database connection object as returned by clidesc_open()
+
+    stations : string
+        The station or station list
+        if several station should be passed as string, not list
+        e.g. 'XXXXX, YYYYY, ZZZZZ'
+
+    Return
+    ------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame object containing the station
+        information
     """
 
     if isinstance(stations, str) and ',' in stations:
@@ -101,9 +146,28 @@ def clidesc_stations(conn, stations):
 ################################################################
 def clidesc_getStationsByCountry(conn, country):
     """
-    gets all the station details for all stations in a given country code (single or vector).
+    Gets all the station details for all stations in a given country code (single or vector).
     It opens the connection, reads the stations table
-    country must be a string, with country codes (if more than one) separated by ','
+    country must be a string, with country codes (if more than one)
+    separated by ','
+
+    Parameters
+    ----------
+
+    conn : db connection
+        A database connection object as returned by clides_open()
+
+    country : string
+        The two letters country identifier
+        e.g. 'WS' for Samoa, 'FJ' for Fiji, ...
+
+    Return
+    ------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame object containing the list of stations
+        available for the country
+
     """
 
     if ',' in country:
@@ -161,6 +225,32 @@ def clidesc_rain24h(conn, stations, from_date, to_date):
 def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
     """
     Read channels for stations (stations) from the obs_subdaily table
+
+    Parameters
+    ----------
+
+    conn : db connection
+        A database connection object as returned by clides_open()
+
+    channels : string
+        The variable channels in the table
+
+    stations : string
+        The station or stations list
+
+    from_date : string
+        The starting date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+    to_date : string
+        The end date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    Return
+    ------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame containing the data
+
     usage:
     table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )
     """
