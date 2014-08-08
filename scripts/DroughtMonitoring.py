@@ -53,7 +53,7 @@ print("Date: %s\n" % ( time.strftime("%d-%m-%Y") ))
 # CLIDE utilities
 ### ===========================================================================
 if local:
-    sys.path.append('../common')
+    sys.path.append('../clidesc')
     # clide: the interface to clide itself
     from clide import *
     # utils: some utility functions
@@ -61,7 +61,6 @@ if local:
 else:
     # source path from the absolute path containing the script
     source_path = os.path.dirname(os.path.realpath(sys.argv[0]))
-    #source_path = os.getcwd()
     sys.path.append(os.path.join(source_path, '../common'))
     # clide: the interface to clide itself
     from clide import *
