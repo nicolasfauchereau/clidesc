@@ -128,7 +128,7 @@ then install the module:
 
 ## Configuration of the clidesc application layer to accept the python language
 
-In order to activate the Python language as an option for developing a climate service, one needs to modify the `config.yml` file that is located (usually) in `/var/www/clidesc/app/config`. On **line 8**, the parameter `script_lang.python` must point to the python binary installed by anaconda, example:
+In order to activate the Python language as an option for developing a climate service, one needs to modify the `config.yml` file that is located (usually) in `/var/www/clidesc/app/config`. On **line 8**, the parameter `python` must point to the python binary installed by anaconda, example:
 
 ```
 parameters:
@@ -139,3 +139,7 @@ parameters:
         php: "/usr/bin/php"
         perl: "/usr/bin/perl"
 ```
+
+## Installing the clide.py and utils.py modules
+
+On a typical installation of a clide / clidesc server, all you need to do is to copy `clide.y` and `utils.py` in the `common/` directory (i.e. the same place where the `clidesc.r` source resides) 
