@@ -1,8 +1,7 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+# Python installation instructions for CLIDEsc
 
-- [Python installation instructions for CLIDEsc](#python-installation-instructions-for-clidesc)
+**Note**: you must be logged as an administrator (or root) on the clidesc server machine in order to install the Anaconda python distribution and configure clidesc to accept python as a climate services development language.
+
   - [The Anaconda python distribution, download and installation](#the-anaconda-python-distribution-download-and-installation)
   - [Installation of additional libraries](#installation-of-additional-libraries)
     - [Basemap](#basemap)
@@ -12,12 +11,6 @@
   - [psycopg2: interface to the [CLIDE](http://www.bom.gov.au/climate/pacific/about-clide.shtml) database](#psycopg2-interface-to-the-clidehttpwwwbomgovauclimatepacificabout-clideshtml-database)
   - [Configuration of the clidesc application layer to accept the python language](#configuration-of-the-clidesc-application-layer-to-accept-the-python-language)
   - [Installing the clide.py and utils.py modules](#installing-the-clidepy-and-utilspy-modules)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-#Python installation instructions for CLIDEsc
-
-**Note**: you must be logged as an administrator (or root) on the clidesc server machine in order to install the Anaconda python distribution and configure clidesc to accept python as a climate services development language.
 
 ##The Anaconda python distribution, download and installation
 
