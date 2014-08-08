@@ -93,8 +93,8 @@ if pd.to_datetime(sDate) > datetime(min_year,1,1):
 ### ===========================================================================
 
 if local:
-    # if local expects this file in the same directory
-	iFile = './Apia_rain24h.csv'
+    # if local loads a example 24 hours rainfall dataset 
+	iFile = '../data/table_rain24h.csv'
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
