@@ -206,10 +206,10 @@ ax2.axhline(level_2, color='r', zorder=10, lw=2)
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 100., \
                  where=subsetper['anomalies'] > 100., color='b', interpolate=True, alpha=0.05)
 
-ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 30., \
+ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * level_2, \
                  where=subsetper['anomalies'] < level_2, color='#700000', interpolate=True, alpha=0.9)
 
-ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 60., \
+ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * level_1, \
                  where=subsetper['anomalies'] < level_1, color='r', interpolate=True, alpha=0.4)
 
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 100., \
@@ -232,7 +232,7 @@ ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {}".f
 p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.05)
 p2 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.4)
 p3 = plt.Rectangle((0, 0), 1, 1, fc="#700000", alpha=0.9)
-leg = plt.legend([p1, p2, p3], ['< mean', '< 60%', '< 30%'],\
+leg = plt.legend([p1, p2, p3], ['< mean', '< {}%'.format(level_1), '< {}%'.format()],\
           loc='upper left', bbox_to_anchor = (1.035, 1.01), fontsize=19)
 leg.draw_frame(False)
 
