@@ -112,12 +112,12 @@ def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
     # get the table returned by the query as a pandas dataframe
     try:
         table = psql.frame_query(query, conn)
+        # the index of the pandas DataFrame is the 'lsd' field, correctly
+        # cast to pandas datetime index and named 'timestamp'
+        table.index = pd.to_datetime(table.lsd)
+        table.index.name = 'timestamp'
     except:
         print('query failed for %s, was probably malformed' % (inputs))
-    # the index of the pandas DataFrame is the 'lsd' field, correctly
-    # cast to pandas datetime index and named 'timestamp'
-    table.index = pd.to_datetime(table.lsd)
-    table.index.name = 'timestamp'
 
     return table
 
@@ -155,12 +155,12 @@ def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
     # get the table returned by the query as a pandas dataframe
     try:
         table = psql.frame_query(query, conn)
+        # the index of the pandas DataFrame is the 'lsd' field, correctly
+        # cast to pandas datetime index and named 'timestamp'
+        table.index = pd.to_datetime(table.lsd)
+        table.index.name = 'timestamp'
     except:
         print('query failed for %s, was probably malformed' % (inputs))
-    # the index of the pandas DataFrame is the 'lsd' field, correctly
-    # cast to pandas datetime index and named 'timestamp'
-    table.index = pd.to_datetime(table.lsd)
-    table.index.name = 'timestamp'
 
     return table
 
@@ -193,12 +193,12 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
     # get the table returned by the query as a pandas dataframe
     try:
         data = psql.frame_query(query, conn)
+        # the index of the pandas DataFrame is the 'lsd' field, correctly
+        # cast to pandas datetime index and named 'datetime'
+        data.index = pd.to_datetime(data.lsd)
+        data.index.name = 'timestamp'
     except:
         print('query failed for %s, was probably malformed' % (inputs))
-    # the index of the pandas DataFrame is the 'lsd' field, correctly
-    # cast to pandas datetime index and named 'datetime'
-    data.index = pd.to_datetime(data.lsd)
-    data.index.name = 'timestamp'
 
     return data
 
