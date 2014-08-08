@@ -40,7 +40,7 @@ def clidesc_progress_add(progress_count):
     pass
 
 ###########################################################################
-def clidesc_open(base_path, database="clideDB", user="XXXX", password="XXXX", dbhost='localhost'):
+def clidesc_open(base_path, database="clideDB", user="XXX", password="XXX", dbhost='localhost'):
     """
     OPEN the ClideDB database and the progress file
     """
@@ -51,6 +51,34 @@ def clidesc_open(base_path, database="clideDB", user="XXXX", password="XXXX", db
         return conn
     except:
         print('\n\nERROR!: Unable to establish the connection to the database\n\n')
+
+################################################################
+def clidesc_getColumns(conn, table):
+    """
+    Return the column names of a table
+
+    Parameters
+    ----------
+
+    conn : the postgresql connection
+    table : string
+        the table (e.g. 'obs_daily', 'obs_subdaily')
+
+    Return
+    ------
+    columns : Pandas.Series
+        A Pandas.Series containing the column names
+
+    Usage
+    -----
+
+    columns = clidesc_getColumns(conn, 'obs_subdaily')
+    columns = clidesc_getColumns(conn, 'obs_daily')
+    """
+
+    query = "SELECT column_name FROM information_schema.columns WHERE table_name = '{}'".format(table)
+    columns = psql.frame_query(query, conn)
+    return columns
 
 ################################################################
 def clidesc_stations(conn, stations):
@@ -116,10 +144,11 @@ def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
         # cast to pandas datetime index and named 'timestamp'
         table.index = pd.to_datetime(table.lsd)
         table.index.name = 'timestamp'
+        return table
     except:
         print('query failed for %s, was probably malformed' % (inputs))
+        return None
 
-    return table
 
 ################################################################
 def clidesc_rain24h(conn, stations, from_date, to_date):
@@ -159,10 +188,11 @@ def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
         # cast to pandas datetime index and named 'timestamp'
         table.index = pd.to_datetime(table.lsd)
         table.index.name = 'timestamp'
+        return table
     except:
         print('query failed for %s, was probably malformed' % (inputs))
+        return None
 
-    return table
 
 ################################################################
 def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
@@ -192,15 +222,16 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
 
     # get the table returned by the query as a pandas dataframe
     try:
-        data = psql.frame_query(query, conn)
+        table = psql.frame_query(query, conn)
         # the index of the pandas DataFrame is the 'lsd' field, correctly
         # cast to pandas datetime index and named 'datetime'
-        data.index = pd.to_datetime(data.lsd)
-        data.index.name = 'timestamp'
+        table.index = pd.to_datetime(table.lsd)
+        table.index.name = 'timestamp'
+        return table
     except:
         print('query failed for %s, was probably malformed' % (inputs))
+        return None
 
-    return data
 
 ################################################################
 # CLOSE
