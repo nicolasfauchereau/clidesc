@@ -8,7 +8,7 @@
     - [Vincent](#vincent)
     - [Folium](#folium)
     - [Seaborn](#seaborn)
-  - [psycopg2: interface to the [CLIDE](http://www.bom.gov.au/climate/pacific/about-clide.shtml) database](#psycopg2-interface-to-the-clidehttpwwwbomgovauclimatepacificabout-clideshtml-database)
+  - [psycopg2: interface to the CLIDE database](#psycopg2-interface-to-the-clide-database)
   - [Configuration of the clidesc application layer to accept the python language](#configuration-of-the-clidesc-application-layer-to-accept-the-python-language)
   - [Installing the clide.py and utils.py modules](#installing-the-clidepy-and-utilspy-modules)
 
@@ -101,9 +101,9 @@ A few other libraries need to be installed in order to make the most of the Pyth
 
     $ /opt/anaconda/bin/pip install seaborn
 
-## psycopg2: interface to the [CLIDE](http://www.bom.gov.au/climate/pacific/about-clide.shtml) database
+## psycopg2: interface to the CLIDE database
 
-The [psycopg2](http://initd.org/psycopg/) provides the interface to the Clide [PostgreSQL](http://www.postgresql.org/) database. It is not part of the libraries distributed with [anaconda](), but can be installed using [binstar](www.binstar.org) channel or from sources.
+The [psycopg2](http://initd.org/psycopg/) provides the interface to the [Clide](http://www.bom.gov.au/climate/pacific/about-clide.shtml) [PostgreSQL](http://www.postgresql.org/) database. It is not part of the libraries distributed with [anaconda](), but can be installed using [binstar](www.binstar.org) channel or from sources.
 
 Before installing [psycopg2](http://initd.org/psycopg/), make sure that ```pg_config``` is in the system PATH, i.e. if you type:
 
