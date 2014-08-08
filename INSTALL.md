@@ -11,6 +11,7 @@
   - [psycopg2: interface to the CLIDE database](#psycopg2-interface-to-the-clide-database)
   - [Configuration of the clidesc application layer to accept the python language](#configuration-of-the-clidesc-application-layer-to-accept-the-python-language)
   - [Installing the clide.py and utils.py modules](#installing-the-clidepy-and-utilspy-modules)
+  - [Installing the scripts](#installing-the-scripts)
 
 ##The Anaconda python distribution, download and installation
 
@@ -125,7 +126,7 @@ If the above method fails, you need to install from sources, the psycopg2 archiv
 
 Once downloaded, cd where you downloaded the psycopg2 archive and enter:  
 
-    $ tar –zxvf psycopg2-2.5.2.tar.gz (*! your version numbers might differ*)
+    $ tar –zxvf psycopg2-2.5.2.tar.gz (*your version numbers might differ*)
 
 then:
 
@@ -155,3 +156,9 @@ parameters:
 The `clide.py` and `utils.py` modules are available from the [clidesc](https://github.com/nicolasfauchereau/clidesc/tree/master/clidesc) directory in the Master branch of this github repository. 
 
 On a typical installation of a clide / clidesc server, all you need to do is to copy `clide.y` and `utils.py` in the `common/` directory (i.e. the same place where the `clidesc.r` source resides)
+
+## Installing the scripts
+
+The scripts implement specific *climate services* (*i.e* data analysis and visualisation workflows) and are located in this github repository in the [scripts](https://github.com/nicolasfauchereau/clidesc/tree/master/scripts) directory. 
+
+To install them (again in a typical installation of a clide / clidesc server) you need to copy them in the corresponding *country folder* (e.g. `WS` for Samoa)

@@ -85,7 +85,7 @@
     <span class="k">pass</span>
 
 <span class="c">###########################################################################</span>
-<div class="viewcode-block" id="clidesc_open"><a class="viewcode-back" href="../modules.html#clide.clidesc_open">[docs]</a><span class="k">def</span> <span class="nf">clidesc_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&quot;clideDB&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;XXXX&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;XXXX&quot;</span><span class="p">,</span> <span class="n">dbhost</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="clidesc_open"><a class="viewcode-back" href="../modules.html#clide.clidesc_open">[docs]</a><span class="k">def</span> <span class="nf">clidesc_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&quot;clideDB&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;XXX&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;XXX&quot;</span><span class="p">,</span> <span class="n">dbhost</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    OPEN the ClideDB database and the progress file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -96,6 +96,34 @@
         <span class="k">return</span> <span class="n">conn</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n\n</span><span class="s">ERROR!: Unable to establish the connection to the database</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+
+<span class="c">################################################################</span></div>
+<div class="viewcode-block" id="clidesc_getColumns"><a class="viewcode-back" href="../modules.html#clide.clidesc_getColumns">[docs]</a><span class="k">def</span> <span class="nf">clidesc_getColumns</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the column names of a table</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : the postgresql connection</span>
+<span class="sd">    table : string</span>
+<span class="sd">        the table (e.g. &#39;obs_daily&#39;, &#39;obs_subdaily&#39;)</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    columns : Pandas.Series</span>
+<span class="sd">        A Pandas.Series containing the column names</span>
+
+<span class="sd">    Usage</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    columns = clidesc_getColumns(conn, &#39;obs_subdaily&#39;)</span>
+<span class="sd">    columns = clidesc_getColumns(conn, &#39;obs_daily&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;SELECT column_name FROM information_schema.columns WHERE table_name = &#39;{}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">columns</span>
 
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_stations"><a class="viewcode-back" href="../modules.html#clide.clidesc_stations">[docs]</a><span class="k">def</span> <span class="nf">clidesc_stations</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">stations</span><span class="p">):</span>
@@ -157,14 +185,15 @@
     <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
+        <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="n">table</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
-    <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
-    <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
-    <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="k">return</span> <span class="n">table</span>
 
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_rain24h"><a class="viewcode-back" href="../modules.html#clide.clidesc_rain24h">[docs]</a><span class="k">def</span> <span class="nf">clidesc_rain24h</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">):</span>
@@ -200,14 +229,15 @@
     <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
+        <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="n">table</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
-    <span class="c"># cast to pandas datetime index and named &#39;timestamp&#39;</span>
-    <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
-    <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="k">return</span> <span class="n">table</span>
 
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_Obs"><a class="viewcode-back" href="../modules.html#clide.clidesc_Obs">[docs]</a><span class="k">def</span> <span class="nf">clidesc_Obs</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">):</span>
@@ -237,15 +267,16 @@
 
     <span class="c"># get the table returned by the query as a pandas dataframe</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">frame_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
+        <span class="c"># cast to pandas datetime index and named &#39;datetime&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="n">table</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;query failed for </span><span class="si">%s</span><span class="s">, was probably malformed&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
-    <span class="c"># the index of the pandas DataFrame is the &#39;lsd&#39; field, correctly</span>
-    <span class="c"># cast to pandas datetime index and named &#39;datetime&#39;</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lsd</span><span class="p">)</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;timestamp&#39;</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="k">return</span> <span class="n">data</span>
 
 <span class="c">################################################################</span>
 <span class="c"># CLOSE</span>

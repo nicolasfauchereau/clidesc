@@ -18,11 +18,11 @@ scientific computing and visualization. In particular it provides Numpy,
 Scipy, Pandas, Matplotlib (+ basemap). The full list of packages is
 available at:
 
-http://docs.continuum.io/anaconda/pkgs.html
+`http://docs.continuum.io/anaconda/pkgs.html <http://docs.continuum.io/anaconda/pkgs.html>`_
 
 The Anaconda python distribution must be downloaded from:
 
-http://continuum.io/downloads
+`http://continuum.io/downloads <http://continuum.io/downloads>`_
 
 For the correct version of your linux system, to know whether CLIDEsc is
 running on a 32 bits or 64 bits server, type
@@ -90,9 +90,8 @@ Then a good thing is to update the anaconda packages already installed
 
     $ /opt/anaconda/bin/conda update anaconda
 
-You also need to install `pip <https://github.com/pypa/pip>`__ to
-install packages from the `Python Package
-Index <http://pypi.python.org/pypi>`__.
+You also need to install `pip <https://github.com/pypa/pip>`_ to install
+packages from the `Python Package Index <http://pypi.python.org/pypi>`_.
 
 ::
 
@@ -104,18 +103,18 @@ Installation of additional libraries
 A few other libraries need to be installed in order to make the most of
 the Python scientific stack:
 
--  `basemap <http://matplotlib.org/basemap/>`__: to create static maps
--  `vincent <http://vincent.readthedocs.org/en/latest/>`__: to create
+-  `basemap <http://matplotlib.org/basemap/>`_: to create static maps
+-  `vincent <http://vincent.readthedocs.org/en/latest/>`_: to create
    dynamic visualisations in the browser
--  `folium <https://github.com/wrobstory/folium>`__: to create dynamic
+-  `folium <https://github.com/wrobstory/folium>`_: to create dynamic
    maps in the browser
--  `seaborn <http://web.stanford.edu/~mwaskom/software/seaborn/>`__: to
+-  `seaborn <http://web.stanford.edu/~mwaskom/software/seaborn/>`_: to
    create sophisticated statistical visualisations
 
 Basemap
 ~~~~~~~
 
-`Basemap <http://matplotlib.org/basemap/>`__ is part of the Anaconda
+`Basemap <http://matplotlib.org/basemap/>`_ is part of the Anaconda
 Python distribution and can be installed by:
 
 ::
@@ -125,8 +124,8 @@ Python distribution and can be installed by:
 Vincent
 ~~~~~~~
 
-`vincent <http://vincent.readthedocs.org/en/latest/>`__ is to be
-installed using `pip <https://github.com/pypa/pip>`__:
+`vincent <http://vincent.readthedocs.org/en/latest/>`_ is to be
+installed using `pip <https://github.com/pypa/pip>`_:
 
 ::
 
@@ -135,8 +134,8 @@ installed using `pip <https://github.com/pypa/pip>`__:
 Folium
 ~~~~~~
 
-`folium <https://github.com/wrobstory/folium>`__, similarly install via
-`pip <https://github.com/pypa/pip>`__:
+`folium <https://github.com/wrobstory/folium>`_, similarly install via
+`pip <https://github.com/pypa/pip>`_:
 
 ::
 
@@ -145,22 +144,23 @@ Folium
 Seaborn
 ~~~~~~~
 
-`seaborn <http://web.stanford.edu/~mwaskom/software/seaborn/>`__ is also
-to be installed via `pip <https://github.com/pypa/pip>`__:
+`seaborn <http://web.stanford.edu/~mwaskom/software/seaborn/>`_ is also
+to be installed via `pip <https://github.com/pypa/pip>`_:
 
 ::
 
     $ /opt/anaconda/bin/pip install seaborn
 
-psycopg2: interface to the `CLIDE <http://www.bom.gov.au/climate/pacific/about-clide.shtml>`__ database
--------------------------------------------------------------------------------------------------------
+psycopg2: interface to the CLIDE database
+-----------------------------------------
 
-The `psycopg2 <http://initd.org/psycopg/>`__ provides the interface to
-the Clide `PostgreSQL <http://www.postgresql.org/>`__ database. It is
-not part of the libraries distributed with `anaconda <>`__, but can be
-installed using `binstar <www.binstar.org>`__ channel or from sources.
+The `psycopg2 <http://initd.org/psycopg/>`_ provides the interface to
+the `Clide <http://www.bom.gov.au/climate/pacific/about-clide.shtml>`_
+`PostgreSQL <http://www.postgresql.org/>`_ database. It is not part of
+the libraries distributed with `anaconda <>`_, but can be installed
+using `binstar <www.binstar.org>`_ channel or from sources.
 
-Before installing `psycopg2 <http://initd.org/psycopg/>`__, make sure
+Before installing `psycopg2 <http://initd.org/psycopg/>`_, make sure
 that ``pg_config`` is in the system PATH, i.e. if you type:
 
 ::
@@ -169,12 +169,12 @@ that ``pg_config`` is in the system PATH, i.e. if you type:
 
 in a terminal it should return the version of PostgreSQL. If something
 goes wrong here, please refer to `the psycopg installation
-documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`__
+documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
 ``psycopg2`` can be installed in two ways:
 
 1) We can make use of `Dan
-   Blanchard <http://dan-blanchard.github.io/>`__'s channel for psycopg2
+   Blanchard <http://dan-blanchard.github.io/>`_'s channel for psycopg2
 
 ::
 
@@ -184,7 +184,7 @@ documentation <http://initd.org/psycopg/docs/install.html#install-from-source>`_
 
 If the above method fails, you need to install from sources, the
 psycopg2 archive (tar.gz) needs to be downloaded from `The psycopg
-download page <http://initd.org/psycopg/download/>`__
+download page <http://initd.org/psycopg/download/>`_
 
 Once downloaded, cd where you downloaded the psycopg2 archive and enter:
 
@@ -211,8 +211,8 @@ Configuration of the clidesc application layer to accept the python language
 In order to activate the Python language as an option for developing a
 climate service, one needs to modify the ``config.yml`` file that is
 located (usually) in ``/var/www/clidesc/app/config``. On **line 8**, the
-parameter ``script_lang.python`` must point to the python binary
-installed by anaconda, example:
+parameter ``python`` must point to the python binary installed by
+anaconda, example:
 
 ::
 
@@ -224,3 +224,9 @@ installed by anaconda, example:
             php: "/usr/bin/php"
             perl: "/usr/bin/perl"
 
+Installing the clide.py and utils.py modules
+--------------------------------------------
+
+On a typical installation of a clide / clidesc server, all you need to
+do is to copy ``clide.y`` and ``utils.py`` in the ``common/`` directory
+(i.e. the same place where the ``clidesc.r`` source resides)

@@ -112,9 +112,8 @@ installation and update of third party modules) by entering</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda update anaconda
 </pre></div>
 </div>
-<p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to
-install packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package
-Index</a>.</p>
+<p>You also need to install <a class="reference external" href="https://github.com/pypa/pip">pip</a> to install
+packages from the <a class="reference external" href="http://pypi.python.org/pypi">Python Package Index</a>.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda install pip
 </pre></div>
 </div>
@@ -132,32 +131,32 @@ maps in the browser</li>
 <li><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>: to
 create sophisticated statistical visualisations</li>
 </ul>
-<div class="section" id="basemap">
-<h3>Basemap<a class="headerlink" href="#basemap" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Basemap<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://matplotlib.org/basemap/">Basemap</a> is part of the Anaconda
 Python distribution and can be installed by:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/conda install basemap
 </pre></div>
 </div>
 </div>
-<div class="section" id="vincent">
-<h3>Vincent<a class="headerlink" href="#vincent" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Vincent<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://vincent.readthedocs.org/en/latest/">vincent</a> is to be
 installed using <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install vincent
 </pre></div>
 </div>
 </div>
-<div class="section" id="folium">
-<h3>Folium<a class="headerlink" href="#folium" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Folium<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/wrobstory/folium">folium</a>, similarly install via
 <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install folium
 </pre></div>
 </div>
 </div>
-<div class="section" id="seaborn">
-<h3>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Seaborn<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a> is also
 to be installed via <a class="reference external" href="https://github.com/pypa/pip">pip</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ /opt/anaconda/bin/pip install seaborn
@@ -166,11 +165,12 @@ to be installed via <a class="reference external" href="https://github.com/pypa/
 </div>
 </div>
 <div class="section" id="psycopg2-interface-to-the-clide-database">
-<h2>psycopg2: interface to the <a class="reference external" href="http://www.bom.gov.au/climate/pacific/about-clide.shtml">CLIDE</a> database<a class="headerlink" href="#psycopg2-interface-to-the-clide-database" title="Permalink to this headline">¶</a></h2>
+<h2>psycopg2: interface to the CLIDE database<a class="headerlink" href="#psycopg2-interface-to-the-clide-database" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a> provides the interface to
-the Clide <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database. It is
-not part of the libraries distributed with <a href="#id1"><span class="problematic" id="id2">`anaconda &lt;&gt;`__</span></a>, but can be
-installed using <a class="reference external" href="www.binstar.org">binstar</a> channel or from sources.</p>
+the <a class="reference external" href="http://www.bom.gov.au/climate/pacific/about-clide.shtml">Clide</a>
+<a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database. It is not part of
+the libraries distributed with <a href="#id13"><span class="problematic" id="id14">`anaconda &lt;&gt;`_</span></a>, but can be installed
+using <a class="reference external" href="www.binstar.org">binstar</a> channel or from sources.</p>
 <p>Before installing <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a>, make sure
 that <tt class="docutils literal"><span class="pre">pg_config</span></tt> is in the system PATH, i.e. if you type:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ pg_config --version
@@ -212,8 +212,8 @@ $ /opt/anaconda/bin/python setup.py install
 <p>In order to activate the Python language as an option for developing a
 climate service, one needs to modify the <tt class="docutils literal"><span class="pre">config.yml</span></tt> file that is
 located (usually) in <tt class="docutils literal"><span class="pre">/var/www/clidesc/app/config</span></tt>. On <strong>line 8</strong>, the
-parameter <tt class="docutils literal"><span class="pre">script_lang.python</span></tt> must point to the python binary
-installed by anaconda, example:</p>
+parameter <tt class="docutils literal"><span class="pre">python</span></tt> must point to the python binary installed by
+anaconda, example:</p>
 <div class="highlight-python"><div class="highlight"><pre>parameters:
     processing_path:
         python: &quot;/opt/anaconda/bin/python&quot;
@@ -223,6 +223,12 @@ installed by anaconda, example:</p>
         perl: &quot;/usr/bin/perl&quot;
 </pre></div>
 </div>
+</div>
+<div class="section" id="installing-the-clide-py-and-utils-py-modules">
+<h2>Installing the clide.py and utils.py modules<a class="headerlink" href="#installing-the-clide-py-and-utils-py-modules" title="Permalink to this headline">¶</a></h2>
+<p>On a typical installation of a clide / clidesc server, all you need to
+do is to copy <tt class="docutils literal"><span class="pre">clide.y</span></tt> and <tt class="docutils literal"><span class="pre">utils.py</span></tt> in the <tt class="docutils literal"><span class="pre">common/</span></tt> directory
+(i.e. the same place where the <tt class="docutils literal"><span class="pre">clidesc.r</span></tt> source resides)</p>
 </div>
 </div>
 

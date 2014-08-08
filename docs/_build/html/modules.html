@@ -81,6 +81,22 @@ table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )</p
 </dd></dl>
 
 <dl class="function">
+<dt id="clide.clidesc_getColumns">
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_getColumns</tt><big>(</big><em>conn</em>, <em>table</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_getColumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_getColumns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the column names of a table</p>
+<p>conn : the postgresql connection
+table : string</p>
+<blockquote>
+<div>the table (e.g. &#8216;obs_daily&#8217;, &#8216;obs_subdaily&#8217;)</div></blockquote>
+<dl class="docutils">
+<dt>columns <span class="classifier-delimiter">:</span> <span class="classifier">Pandas.Series</span></dt>
+<dd>A Pandas.Series containing the column names</dd>
+</dl>
+<p>columns = clidesc_getColumns(conn, &#8216;obs_subdaily&#8217;)
+columns = clidesc_getColumns(conn, &#8216;obs_daily&#8217;)</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="clide.clidesc_getStationsByCountry">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_getStationsByCountry</tt><big>(</big><em>conn</em>, <em>country</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_getStationsByCountry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_getStationsByCountry" title="Permalink to this definition">¶</a></dt>
 <dd><p>gets all the station details for all stations in a given country code (single or vector).
@@ -90,7 +106,7 @@ country must be a string, with country codes (if more than one) separated by &#8
 
 <dl class="function">
 <dt id="clide.clidesc_open">
-<tt class="descclassname">clide.</tt><tt class="descname">clidesc_open</tt><big>(</big><em>base_path</em>, <em>database='clideDB'</em>, <em>user='XXXX'</em>, <em>password='XXXX'</em>, <em>dbhost='localhost'</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_open" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">clide.</tt><tt class="descname">clidesc_open</tt><big>(</big><em>base_path</em>, <em>database='clideDB'</em>, <em>user='XXX'</em>, <em>password='XXX'</em>, <em>dbhost='localhost'</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>OPEN the ClideDB database and the progress file</p>
 </dd></dl>
 

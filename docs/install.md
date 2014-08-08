@@ -1,4 +1,4 @@
-#Python installation instructions for CLIDEsc
+# Python installation instructions for CLIDEsc
 
 **Note**: you must be logged as an administrator (or root) on the clidesc server machine in order to install the Anaconda python distribution and configure clidesc to accept python as a climate services development language.
 
@@ -91,9 +91,9 @@ A few other libraries need to be installed in order to make the most of the Pyth
 
     $ /opt/anaconda/bin/pip install seaborn
 
-## psycopg2: interface to the [CLIDE](http://www.bom.gov.au/climate/pacific/about-clide.shtml) database
+## psycopg2: interface to the CLIDE database
 
-The [psycopg2](http://initd.org/psycopg/) provides the interface to the Clide [PostgreSQL](http://www.postgresql.org/) database. It is not part of the libraries distributed with [anaconda](), but can be installed using [binstar](www.binstar.org) channel or from sources.
+The [psycopg2](http://initd.org/psycopg/) provides the interface to the [Clide](http://www.bom.gov.au/climate/pacific/about-clide.shtml) [PostgreSQL](http://www.postgresql.org/) database. It is not part of the libraries distributed with [anaconda](), but can be installed using [binstar](www.binstar.org) channel or from sources.
 
 Before installing [psycopg2](http://initd.org/psycopg/), make sure that ```pg_config``` is in the system PATH, i.e. if you type:
 
@@ -142,4 +142,4 @@ parameters:
 
 ## Installing the clide.py and utils.py modules
 
-On a typical installation of a clide / clidesc server, all you need to do is to copy `clide.y` and `utils.py` in the `common/` directory (i.e. the same place where the `clidesc.r` source resides) 
+On a typical installation of a clide / clidesc server, all you need to do is to copy `clide.y` and `utils.py` in the `common/` directory (i.e. the same place where the `clidesc.r` source resides)
