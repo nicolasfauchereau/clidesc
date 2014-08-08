@@ -152,4 +152,6 @@ parameters:
 
 ## Installing the clide.py and utils.py modules
 
+The `clide.py` and `utils.py` modules are available from the [clidesc](https://github.com/nicolasfauchereau/clidesc/tree/master/clidesc) directory in the Master branch of this github repository. 
+
 On a typical installation of a clide / clidesc server, all you need to do is to copy `clide.y` and `utils.py` in the `common/` directory (i.e. the same place where the `clidesc.r` source resides)
