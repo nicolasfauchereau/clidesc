@@ -6,8 +6,8 @@
 # PROJECT: Integrating climate change risks in agriculture and health sectors in Samoa
 # Author: Nicolas Fauchereau, NIWA
 # Date: August 2014
-# can test using: 
-# `./SoiSeasonalRainfall.py base_path stations from_date to_date` 
+# can test using:
+# `./SoiSeasonalRainfall.py base_path stations from_date to_date`
 
 ### ===========================================================================
 # imports
@@ -19,10 +19,10 @@ import pandas as pd
 import numpy as np
 from scipy.stats import pearsonr
 from matplotlib import pyplot as plt
-try: 
+try:
     import seaborn as sb
     seaborn = True
-except: 
+except:
     print("we don't plot the seaborn module'")
     seaborn = False
 
@@ -64,7 +64,7 @@ if local:
     sName = 'Station_Name'
 else:
     station = clidesc_stations(conn, stations)
-    # get the primary name 
+    # get the primary name
     sName = station['name_primary'][0]
     # get the start date
     sDate = station['start_date'][0]
@@ -208,10 +208,10 @@ ax.set_xticklabels(seasons, fontsize=14, rotation=90)
 ax.set_title('Correlation Rainfall <> SOI for {}\ncalculated with a total of {} seasons'.format(sName, total_data))
 ax.set_xlabel('Season')
 ax.set_ylabel("Pearson's R")
-ax.set_ylim(-Rmax, Rmax) 
-f.savefig(os.path.join(base_path, 'Barplot_SoiSeasonalRainfall_{}'.format(sName)))
+ax.set_ylim(-Rmax, Rmax)
+f.savefig(os.path.join(base_path, 'Barplot_SoiSeasonalRainfall_WS.png'))
 
-if seaborn: 
+if seaborn:
     """
     facet plot of the regressions between the SOI and the seasonal rainfall anomalies
     """
@@ -221,17 +221,17 @@ if seaborn:
 
     axes = axes.flatten()
 
-    for i, m in enumerate(np.arange(1,13)): 
+    for i, m in enumerate(np.arange(1,13)):
         ax = axes[i]
         ds = groups.get_group(m)
         ds = ds.dropna()
         sb.regplot(ds['soi'], ds['anoms'], ax=ax, color='#000099')
         ax.set_title("{}, R = {:4.2f}".format(seasons[i],ds.corr().ix[1,0]))
         ax.set_xlabel('SOI')
-        if m in [1,4,7,10]: 
+        if m in [1,4,7,10]:
             ax.set_ylabel('anoms. (mm)')
         else:
             ax.set_ylabel('')
-    f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_{}'.format(sName)))
+    f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_WS.png'))
 
 clidesc_close(base_path, conn)

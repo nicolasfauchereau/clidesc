@@ -6,8 +6,8 @@
 # PROJECT: Integrating climate change risks in agriculture and health sectors in Samoa
 # Author: Nicolas Fauchereau, NIWA
 # Date: August 2014
-# can test using: 
-# `./DroughtMonitoring.py base_path stations from_date to_date` 
+# can test using:
+# `./DroughtMonitoring.py base_path stations from_date to_date`
 
 ### ===========================================================================
 # imports
@@ -76,7 +76,7 @@ if local:
     sName = 'Station_Name'
 else:
     station = clidesc_stations(conn, stations)
-    # get the primary name 
+    # get the primary name
     sName = station['name_primary'][0]
     # get the start date
     sDate = station['start_date'][0]
@@ -93,7 +93,7 @@ if pd.to_datetime(sDate) > datetime(min_year,1,1):
 ### ===========================================================================
 
 if local:
-    # if local loads a example 24 hours rainfall dataset 
+    # if local loads a example 24 hours rainfall dataset
 	iFile = '../data/table_rain24h.csv'
 	iData = pd.read_csv(iFile, index_col=0)
 else:
@@ -101,7 +101,7 @@ else:
     iData = clidesc_rain24h(conn, stations, datetime(min_year, 1 1).strftime("%Y-%m-%d"), to_date)
 
 # The DataFrame from clide is likely to contain missing indexes
-# so we create a continuous datetime index and reindex 
+# so we create a continuous datetime index and reindex
 
 daterange = pd.period_range(start = datetime(min_year, 1 1).strftime("%Y-%m-%d"), end = to_date, freq = 'D').to_datetime()
 
@@ -122,7 +122,7 @@ datam = iData[['rain_24h']].resample('1M', how='sum')
 datam.columns = [['monthly means']]
 
 ### ===========================================================================
-### calculates the normals for the [window] days periods 
+### calculates the normals for the [window] days periods
 ### ===========================================================================
 
 normal = ['1972-01-01','2012-12-31']
@@ -149,7 +149,7 @@ merged_df_mean = merged_df_mean.sort(['year','month','day'], axis=0)
 merged_df_mean.columns = ['rain_24h', 'year', 'month','day', 'clim']
 
 ### ===========================================================================
-### calculates the anomalies (in percentage of normals) for the [window] days 
+### calculates the anomalies (in percentage of normals) for the [window] days
 ### periods and add these to the DataFrame
 ### ===========================================================================
 
@@ -221,7 +221,7 @@ ax2.grid('on') # gridlines ON for the percentage anomalies
 
 ax2.set_ylim(0, subsetper['anomalies'].max()+5)
 
-# this proves necessary or the (possible) missing values 
+# this proves necessary or the (possible) missing values
 # at the end are ignored in the plot ...
 ax2.set_xlim(subsetper.index[0], subsetper.index[-1])
 
@@ -237,6 +237,6 @@ leg = plt.legend([p1, p2, p3], ['< mean', '< {}%'.format(level_1), '< {}%'.forma
 leg.draw_frame(False)
 
 # saves the figure in png (dpi = 200)
-f.savefig(os.path.join(base_path,'drought_monitoring_{}days_{}.png'.format(window, sName)), dpi=200)
+f.savefig(os.path.join(base_path,'drought_monitoring_{}days_WS.png'.format(window)), dpi=200)
 
 clidesc_close(base_path, conn)
