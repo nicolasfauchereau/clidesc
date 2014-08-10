@@ -104,25 +104,35 @@ e.g. &#8216;2014-01-01&#8217;</p>
 <dt id="clide.clidesc_ObsDaily">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_ObsDaily</tt><big>(</big><em>conn</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_ObsDaily"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_ObsDaily" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns the daily observations table for the requested stations, channels and date range.</p>
-<dl class="docutils">
-<dt>conn <span class="classifier-delimiter">:</span> <span class="classifier">db connection</span></dt>
-<dd>A database connection object as returned by clides_open()</dd>
-<dt>channels <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd>The variable channels in the table</dd>
-<dt>stations <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd>The station or stations list</dd>
-<dt>from_date <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd>The starting date in &#8216;YYYY-MM-DD&#8217; format
-e.g. &#8216;2014-01-01&#8217;</dd>
-<dt>to_date <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd>The end date in &#8216;YYYY-MM-DD&#8217; format
-e.g. &#8216;2014-01-01&#8217;</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+<p><strong>channels</strong> : string</p>
+<blockquote>
+<div><p>The variable channels in the table</p>
+</div></blockquote>
+<p><strong>stations</strong> : string</p>
+<blockquote>
+<div><p>The station or stations list</p>
+</div></blockquote>
+<p><strong>from_date</strong> : string</p>
+<blockquote>
+<div><p>The starting date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+<p><strong>to_date</strong> : string</p>
+<blockquote>
+<div><p>The end date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
 <blockquote class="last">
 <div><p>A Pandas.DataFrame containing the data</p>
 </div></blockquote>
