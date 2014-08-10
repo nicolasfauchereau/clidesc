@@ -184,6 +184,9 @@ def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
     """
     returns the daily observations table for the requested stations, channels and date range.
 
+    Parameters
+    ----------
+
     conn : db connection
         A database connection object as returned by clides_open()
 
