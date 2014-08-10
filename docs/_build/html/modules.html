@@ -51,77 +51,321 @@
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_Obs</tt><big>(</big><em>conn</em>, <em>table</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_Obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_Obs" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns the given observations table for the requested stations, date range and columns
 depends on an open clidDB connection clideDB</p>
-<p>Usage:
-table = clidesc_Obs(conn, &#8220;obs_subdaily&#8221;, channels, stations, from_date, to_date)
-Currently no parameter checking.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+<p><strong>table: string</strong></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The table from which the observations are required, can be:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;obs_daily&#8217;</li>
+<li>&#8216;obs_subdaily&#8217;</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>channels</strong> : string</p>
+<blockquote>
+<div><p>The channel to retrieve, ex. &#8216;wind_speed&#8217;, &#8216;rain_24h&#8217;</p>
+</div></blockquote>
+<p><strong>stations</strong> : string</p>
+<blockquote>
+<div><p>The station(s), if more than one &#8216;XXXXX, YYYYY&#8217;</p>
+</div></blockquote>
+<p><strong>from_date</strong> : string</p>
+<blockquote>
+<div><p>The starting date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+<p><strong>to_date</strong> : string</p>
+<blockquote>
+<div><p>The end date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.DataFrame containing the data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_ObsDaily">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_ObsDaily</tt><big>(</big><em>conn</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_ObsDaily"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_ObsDaily" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns the daily observations table for the requested stations, date range and columns
-depends on an open clidDB connection clideDB</p>
-<p>Usage:
-table = clidesc_ObsDaily(clideDB, channels, stations, from_date, to_date )
-Currently no parameter checking.</p>
+<dd><p>returns the daily observations table for the requested stations, channels and date range.</p>
+<dl class="docutils">
+<dt>conn <span class="classifier-delimiter">:</span> <span class="classifier">db connection</span></dt>
+<dd>A database connection object as returned by clides_open()</dd>
+<dt>channels <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>The variable channels in the table</dd>
+<dt>stations <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>The station or stations list</dd>
+<dt>from_date <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>The starting date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</dd>
+<dt>to_date <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>The end date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.DataFrame containing the data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_ObsSubDaily">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_ObsSubDaily</tt><big>(</big><em>conn</em>, <em>channels</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_ObsSubDaily"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_ObsSubDaily" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read channels for stations (stations) from the obs_subdaily table
-usage:
-table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )</p>
+<dd><p>Read channels for stations (stations) from the obs_subdaily table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+<p><strong>channels</strong> : string</p>
+<blockquote>
+<div><p>The variable channels in the table</p>
+</div></blockquote>
+<p><strong>stations</strong> : string</p>
+<blockquote>
+<div><p>The station or stations list</p>
+</div></blockquote>
+<p><strong>from_date</strong> : string</p>
+<blockquote>
+<div><p>The starting date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+<p><strong>to_date</strong> : string</p>
+<blockquote>
+<div><p>The end date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote>
+<div><p>A Pandas.DataFrame containing the data</p>
+</div></blockquote>
+<p>usage:</p>
+<p class="last">table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_close">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_close</tt><big>(</big><em>base_path</em>, <em>conn</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_close" title="Permalink to this definition">¶</a></dt>
-<dd><p>docstring for clides</p>
+<dd><p>closes a clide connection</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>base_path</strong> : path</p>
+<blockquote>
+<div><p>The base path</p>
+</div></blockquote>
+<p><strong>conn</strong> : db connection</p>
+<blockquote class="last">
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_getColumns">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_getColumns</tt><big>(</big><em>conn</em>, <em>table</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_getColumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_getColumns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the column names of a table</p>
-<p>conn : the postgresql connection
-table : string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : the postgresql connection</p>
+<p><strong>table</strong> : string</p>
 <blockquote>
-<div>the table (e.g. &#8216;obs_daily&#8217;, &#8216;obs_subdaily&#8217;)</div></blockquote>
-<dl class="docutils">
-<dt>columns <span class="classifier-delimiter">:</span> <span class="classifier">Pandas.Series</span></dt>
-<dd>A Pandas.Series containing the column names</dd>
-</dl>
-<p>columns = clidesc_getColumns(conn, &#8216;obs_subdaily&#8217;)
-columns = clidesc_getColumns(conn, &#8216;obs_daily&#8217;)</p>
+<div><p>the table (e.g. &#8216;obs_daily&#8217;, &#8216;obs_subdaily&#8217;)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>columns</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.Series containing the column names</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_getStationsByCountry">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_getStationsByCountry</tt><big>(</big><em>conn</em>, <em>country</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_getStationsByCountry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_getStationsByCountry" title="Permalink to this definition">¶</a></dt>
-<dd><p>gets all the station details for all stations in a given country code (single or vector).
+<dd><p>Gets all the station details for all stations in a given country code (single or vector).
 It opens the connection, reads the stations table
-country must be a string, with country codes (if more than one) separated by &#8216;,&#8217;</p>
+country must be a string, with country codes (if more than one)
+separated by &#8216;,&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+<p><strong>country</strong> : string</p>
+<blockquote>
+<div><p>The two letters country identifier
+e.g. &#8216;WS&#8217; for Samoa, &#8216;FJ&#8217; for Fiji, ...</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.DataFrame object containing the list of stations
+available for the country</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_open">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_open</tt><big>(</big><em>base_path</em>, <em>database='clideDB'</em>, <em>user='XXX'</em>, <em>password='XXX'</em>, <em>dbhost='localhost'</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_open" title="Permalink to this definition">¶</a></dt>
-<dd><p>OPEN the ClideDB database and the progress file</p>
+<dd><p>Open the ClideDB database and the progress file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>base_path</strong> : filesystem path</p>
+<blockquote>
+<div><p>The base path where all the outputs etc are dumped</p>
+</div></blockquote>
+<p><strong>database</strong> : string</p>
+<blockquote>
+<div><p>The name of the Database (ClideDB usually)</p>
+</div></blockquote>
+<p><strong>user</strong> : string</p>
+<blockquote>
+<div><p>The username</p>
+</div></blockquote>
+<p><strong>password</strong> : string</p>
+<blockquote>
+<div><p>The passowrd</p>
+</div></blockquote>
+<p><strong>dbhost</strong> : string</p>
+<blockquote>
+<div><p>The host server name (&#8216;localhost&#8217; if clide is accessed
+locally)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote class="last">
+<div><p>A database connection object as returned by psycopg2.connect()</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_rain24h">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_rain24h</tt><big>(</big><em>conn</em>, <em>stations</em>, <em>from_date</em>, <em>to_date</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_rain24h"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_rain24h" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility function to read the rain_24h channel from the obs_daily table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>A database connection object as returned by clides_open()</p>
+</div></blockquote>
+<p><strong>stations</strong> : string</p>
+<blockquote>
+<div><p>The station or stations list</p>
+</div></blockquote>
+<p><strong>from_date</strong> : string</p>
+<blockquote>
+<div><p>The starting date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+<p><strong>to_date</strong> : string</p>
+<blockquote>
+<div><p>The end date in &#8216;YYYY-MM-DD&#8217; format
+e.g. &#8216;2014-01-01&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.DataFrame containing the data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="clide.clidesc_stations">
 <tt class="descclassname">clide.</tt><tt class="descname">clidesc_stations</tt><big>(</big><em>conn</em>, <em>stations</em><big>)</big><a class="reference internal" href="_modules/clide.html#clidesc_stations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clide.clidesc_stations" title="Permalink to this definition">¶</a></dt>
-<dd><p>gets all the station details for a station number
+<dd><p>Gets all the station details for a station number
 It opens the connection, reads the stations table
 station_no is a string, with stations separated by &#8216;,&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>conn</strong> : db connection</p>
+<blockquote>
+<div><p>Database connection object as returned by clidesc_open()</p>
+</div></blockquote>
+<p><strong>stations</strong> : string</p>
+<blockquote>
+<div><p>The station or station list
+if several station should be passed as string, not list
+e.g. &#8216;XXXXX, YYYYY, ZZZZZ&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>table</strong> : Pandas.DataFrame</p>
+<blockquote class="last">
+<div><p>A Pandas.DataFrame object containing the station
+information</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

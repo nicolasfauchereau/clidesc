@@ -64,8 +64,8 @@ def clidesc_open(base_path, database="clideDB", user="XXX", password="XXX", dbho
         The host server name ('localhost' if clide is accessed
         locally)
 
-    Return
-    ------
+    Returns
+    -------
 
     conn : db connection
         A database connection object as returned by psycopg2.connect()
@@ -91,8 +91,8 @@ def clidesc_getColumns(conn, table):
     table : string
         the table (e.g. 'obs_daily', 'obs_subdaily')
 
-    Return
-    ------
+    Returns
+    -------
     columns : Pandas.DataFrame
         A Pandas.Series containing the column names
 
@@ -125,8 +125,8 @@ def clidesc_stations(conn, stations):
         if several station should be passed as string, not list
         e.g. 'XXXXX, YYYYY, ZZZZZ'
 
-    Return
-    ------
+    Returns
+    -------
 
     table : Pandas.DataFrame
         A Pandas.DataFrame object containing the station
@@ -161,8 +161,8 @@ def clidesc_getStationsByCountry(conn, country):
         The two letters country identifier
         e.g. 'WS' for Samoa, 'FJ' for Fiji, ...
 
-    Return
-    ------
+    Returns
+    -------
 
     table : Pandas.DataFrame
         A Pandas.DataFrame object containing the list of stations
@@ -182,12 +182,31 @@ def clidesc_getStationsByCountry(conn, country):
 ################################################################
 def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
     """
-    returns the daily observations table for the requested stations, date range and columns
-    depends on an open clidDB connection clideDB
+    returns the daily observations table for the requested stations, channels and date range.
 
-    Usage:
-    table = clidesc_ObsDaily(clideDB, channels, stations, from_date, to_date )
-    Currently no parameter checking.
+    conn : db connection
+        A database connection object as returned by clides_open()
+
+    channels : string
+        The variable channels in the table
+
+    stations : string
+        The station or stations list
+
+    from_date : string
+        The starting date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    to_date : string
+        The end date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    Returns
+    -------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame containing the data
+
     """
 
     # some string formatting on the stations if more than one
@@ -218,6 +237,29 @@ def clidesc_ObsDaily(conn, channels, stations, from_date, to_date):
 def clidesc_rain24h(conn, stations, from_date, to_date):
     """
     Utility function to read the rain_24h channel from the obs_daily table
+
+    Parameters
+    ----------
+
+    conn : db connection
+        A database connection object as returned by clides_open()
+
+    stations : string
+        The station or stations list
+
+    from_date : string
+        The starting date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    to_date : string
+        The end date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    Returns
+    -------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame containing the data
     """
     return clidesc_ObsDaily(conn, 'rain_24h', stations, from_date, to_date)
 
@@ -241,12 +283,13 @@ def clidesc_ObsSubDaily(conn, channels, stations, from_date, to_date):
     from_date : string
         The starting date in 'YYYY-MM-DD' format
         e.g. '2014-01-01'
+
     to_date : string
         The end date in 'YYYY-MM-DD' format
         e.g. '2014-01-01'
 
-    Return
-    ------
+    Returns
+    -------
 
     table : Pandas.DataFrame
         A Pandas.DataFrame containing the data
@@ -314,6 +357,12 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
     to_date : string
         The end date in 'YYYY-MM-DD' format
         e.g. '2014-01-01'
+
+    Returns
+    -------
+
+    table : Pandas.DataFrame
+        A Pandas.DataFrame containing the data
     """
 
     # some string formatting on the stations if more than one

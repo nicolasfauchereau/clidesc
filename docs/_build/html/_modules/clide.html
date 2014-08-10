@@ -81,13 +81,40 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">percent</span> <span class="p">)</span> <span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">clidesc_progress_add</span><span class="p">(</span><span class="n">progress_count</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">clidesc_progress_add</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">progress_count</span><span class="p">):</span>
     <span class="k">pass</span>
+
 
 <span class="c">###########################################################################</span>
 <div class="viewcode-block" id="clidesc_open"><a class="viewcode-back" href="../modules.html#clide.clidesc_open">[docs]</a><span class="k">def</span> <span class="nf">clidesc_open</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&quot;clideDB&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;XXX&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;XXX&quot;</span><span class="p">,</span> <span class="n">dbhost</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    OPEN the ClideDB database and the progress file</span>
+<span class="sd">    Open the ClideDB database and the progress file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    base_path : filesystem path</span>
+<span class="sd">        The base path where all the outputs etc are dumped</span>
+
+<span class="sd">    database : string</span>
+<span class="sd">        The name of the Database (ClideDB usually)</span>
+
+<span class="sd">    user : string</span>
+<span class="sd">        The username</span>
+
+<span class="sd">    password : string</span>
+<span class="sd">        The passowrd</span>
+
+<span class="sd">    dbhost : string</span>
+<span class="sd">        The host server name (&#39;localhost&#39; if clide is accessed</span>
+<span class="sd">        locally)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by psycopg2.connect()</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -109,9 +136,9 @@
 <span class="sd">    table : string</span>
 <span class="sd">        the table (e.g. &#39;obs_daily&#39;, &#39;obs_subdaily&#39;)</span>
 
-<span class="sd">    Return</span>
-<span class="sd">    ------</span>
-<span class="sd">    columns : Pandas.Series</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    columns : Pandas.DataFrame</span>
 <span class="sd">        A Pandas.Series containing the column names</span>
 
 <span class="sd">    Usage</span>
@@ -128,9 +155,27 @@
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_stations"><a class="viewcode-back" href="../modules.html#clide.clidesc_stations">[docs]</a><span class="k">def</span> <span class="nf">clidesc_stations</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">stations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    gets all the station details for a station number</span>
+<span class="sd">    Gets all the station details for a station number</span>
 <span class="sd">    It opens the connection, reads the stations table</span>
 <span class="sd">    station_no is a string, with stations separated by &#39;,&#39;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        Database connection object as returned by clidesc_open()</span>
+
+<span class="sd">    stations : string</span>
+<span class="sd">        The station or station list</span>
+<span class="sd">        if several station should be passed as string, not list</span>
+<span class="sd">        e.g. &#39;XXXXX, YYYYY, ZZZZZ&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame object containing the station</span>
+<span class="sd">        information</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">:</span>
@@ -146,9 +191,28 @@
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_getStationsByCountry"><a class="viewcode-back" href="../modules.html#clide.clidesc_getStationsByCountry">[docs]</a><span class="k">def</span> <span class="nf">clidesc_getStationsByCountry</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">country</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    gets all the station details for all stations in a given country code (single or vector).</span>
+<span class="sd">    Gets all the station details for all stations in a given country code (single or vector).</span>
 <span class="sd">    It opens the connection, reads the stations table</span>
-<span class="sd">    country must be a string, with country codes (if more than one) separated by &#39;,&#39;</span>
+<span class="sd">    country must be a string, with country codes (if more than one)</span>
+<span class="sd">    separated by &#39;,&#39;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+
+<span class="sd">    country : string</span>
+<span class="sd">        The two letters country identifier</span>
+<span class="sd">        e.g. &#39;WS&#39; for Samoa, &#39;FJ&#39; for Fiji, ...</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame object containing the list of stations</span>
+<span class="sd">        available for the country</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="s">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">country</span><span class="p">:</span>
@@ -163,12 +227,31 @@
 <span class="c">################################################################</span></div>
 <div class="viewcode-block" id="clidesc_ObsDaily"><a class="viewcode-back" href="../modules.html#clide.clidesc_ObsDaily">[docs]</a><span class="k">def</span> <span class="nf">clidesc_ObsDaily</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    returns the daily observations table for the requested stations, date range and columns</span>
-<span class="sd">    depends on an open clidDB connection clideDB</span>
+<span class="sd">    returns the daily observations table for the requested stations, channels and date range.</span>
 
-<span class="sd">    Usage:</span>
-<span class="sd">    table = clidesc_ObsDaily(clideDB, channels, stations, from_date, to_date )</span>
-<span class="sd">    Currently no parameter checking.</span>
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+
+<span class="sd">    channels : string</span>
+<span class="sd">        The variable channels in the table</span>
+
+<span class="sd">    stations : string</span>
+<span class="sd">        The station or stations list</span>
+
+<span class="sd">    from_date : string</span>
+<span class="sd">        The starting date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    to_date : string</span>
+<span class="sd">        The end date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame containing the data</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c"># some string formatting on the stations if more than one</span>
@@ -199,6 +282,29 @@
 <div class="viewcode-block" id="clidesc_rain24h"><a class="viewcode-back" href="../modules.html#clide.clidesc_rain24h">[docs]</a><span class="k">def</span> <span class="nf">clidesc_rain24h</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Utility function to read the rain_24h channel from the obs_daily table</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+
+<span class="sd">    stations : string</span>
+<span class="sd">        The station or stations list</span>
+
+<span class="sd">    from_date : string</span>
+<span class="sd">        The starting date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    to_date : string</span>
+<span class="sd">        The end date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame containing the data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">clidesc_ObsDaily</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&#39;rain_24h&#39;</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">)</span>
 
@@ -206,6 +312,33 @@
 <div class="viewcode-block" id="clidesc_ObsSubDaily"><a class="viewcode-back" href="../modules.html#clide.clidesc_ObsSubDaily">[docs]</a><span class="k">def</span> <span class="nf">clidesc_ObsSubDaily</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">from_date</span><span class="p">,</span> <span class="n">to_date</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read channels for stations (stations) from the obs_subdaily table</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+
+<span class="sd">    channels : string</span>
+<span class="sd">        The variable channels in the table</span>
+
+<span class="sd">    stations : string</span>
+<span class="sd">        The station or stations list</span>
+
+<span class="sd">    from_date : string</span>
+<span class="sd">        The starting date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    to_date : string</span>
+<span class="sd">        The end date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame containing the data</span>
+
 <span class="sd">    usage:</span>
 <span class="sd">    table = clidesc_ObsSubDaily(clideDB, channels, stations, from_date, to_date )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -245,9 +378,36 @@
 <span class="sd">    returns the given observations table for the requested stations, date range and columns</span>
 <span class="sd">    depends on an open clidDB connection clideDB</span>
 
-<span class="sd">    Usage:</span>
-<span class="sd">    table = clidesc_Obs(conn, &quot;obs_subdaily&quot;, channels, stations, from_date, to_date)</span>
-<span class="sd">    Currently no parameter checking.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+
+<span class="sd">    table: string</span>
+<span class="sd">        The table from which the observations are required, can be:</span>
+<span class="sd">            + &#39;obs_daily&#39;</span>
+<span class="sd">            + &#39;obs_subdaily&#39;</span>
+
+<span class="sd">    channels : string</span>
+<span class="sd">        The channel to retrieve, ex. &#39;wind_speed&#39;, &#39;rain_24h&#39;</span>
+
+<span class="sd">    stations : string</span>
+<span class="sd">        The station(s), if more than one &#39;XXXXX, YYYYY&#39;</span>
+
+<span class="sd">    from_date : string</span>
+<span class="sd">        The starting date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    to_date : string</span>
+<span class="sd">        The end date in &#39;YYYY-MM-DD&#39; format</span>
+<span class="sd">        e.g. &#39;2014-01-01&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    table : Pandas.DataFrame</span>
+<span class="sd">        A Pandas.DataFrame containing the data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c"># some string formatting on the stations if more than one</span>
@@ -283,7 +443,18 @@
 <span class="c"># Closes the connection &amp;&amp; Frees all the resources on the driver</span>
 </div>
 <div class="viewcode-block" id="clidesc_close"><a class="viewcode-back" href="../modules.html#clide.clidesc_close">[docs]</a><span class="k">def</span> <span class="nf">clidesc_close</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">conn</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;docstring for clides&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    closes a clide connection</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    base_path : path</span>
+<span class="sd">        The base path</span>
+
+<span class="sd">    conn : db connection</span>
+<span class="sd">        A database connection object as returned by clides_open()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clidesc_progress</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">closed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
