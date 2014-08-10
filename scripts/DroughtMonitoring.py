@@ -87,7 +87,8 @@ else:
 # tests the opening data of the station
 ### ===========================================================================
 if pd.to_datetime(sDate) > datetime(norm_year_start,1,1):
-    print("! WARNING, the station has been opened after {}, not enough data to calculate normals\n".format(str(norm_year_start)))
+    print("! WARNING, the station has been opened after {},\
+    not enough data to calculate normals\n".format(str(norm_year_start)))
     sys.exit(1)
 
 ### ===========================================================================
@@ -107,7 +108,8 @@ clidesc_progress(base_path, 10)
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex
 
-daterange = pd.period_range(start = datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), end = to_date, freq = 'D').to_datetime()
+daterange = pd.period_range(start = datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), \
+end = to_date, freq = 'D').to_datetime()
 
 iData = iData.reindex(daterange)
 
@@ -133,7 +135,8 @@ clidesc_progress(base_path, 30)
 ### calculates the normals for the [window] days periods
 ### ===========================================================================
 
-normal = ['{}-01-01'.format(str(norm_year_start)),'{}-12-31'.format(str(norm_year_end))]
+normal = ['{}-01-01'.format(str(norm_year_start)),\
+'{}-12-31'.format(str(norm_year_end))]
 
 normals = datars[normal[0]:normal[-1]]
 
