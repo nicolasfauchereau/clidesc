@@ -26,9 +26,11 @@ print("Programme: DroughtMonitoring.py\n")
 local = False
 
 ### ===========================================================================
-### defines minimum year (station needs to have been opened before that date)
+### defines starting and end years for the normal calculation
+### if the station has been open AFTER `norma_year_start`, the script will fail
 ### ===========================================================================
-min_year = 1972
+norm_year_start = 1972
+norm_year_end = 2012
 
 ### ===========================================================================
 ### defines the window (days)
@@ -36,7 +38,7 @@ min_year = 1972
 window = 90
 
 ### ===========================================================================
-### defines the minimum percentage of obs to calculate an avearge in the window
+### defines the minimum percentage of obs to calculate an average in the window
 ### ===========================================================================
 min_per = 0.6
 
@@ -84,8 +86,8 @@ else:
 ### ===========================================================================
 # tests the opening data of the station
 ### ===========================================================================
-if pd.to_datetime(sDate) > datetime(min_year,1,1):
-    print("! WARNING, the station has been opened after 1972, not enough data to calculate normals\n")
+if pd.to_datetime(sDate) > datetime(norm_year_start,1,1):
+    print("! WARNING, the station has been opened after {}, not enough data to calculate normals\n".format(str(norm_year_start)))
     sys.exit(1)
 
 ### ===========================================================================
@@ -98,14 +100,14 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, stations, datetime(min_year, 1 1).strftime("%Y-%m-%d"), to_date)
+    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), to_date)
 
 clidesc_progress(base_path, 10)
 
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex
 
-daterange = pd.period_range(start = datetime(min_year, 1 1).strftime("%Y-%m-%d"), end = to_date, freq = 'D').to_datetime()
+daterange = pd.period_range(start = datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), end = to_date, freq = 'D').to_datetime()
 
 iData = iData.reindex(daterange)
 
@@ -131,7 +133,7 @@ clidesc_progress(base_path, 30)
 ### calculates the normals for the [window] days periods
 ### ===========================================================================
 
-normal = ['1972-01-01','2012-12-31']
+normal = ['{}-01-01'.format(str(norm_year_start)),'{}-12-31'.format(str(norm_year_end))]
 
 normals = datars[normal[0]:normal[-1]]
 
@@ -187,7 +189,7 @@ f, ax = plt.subplots(figsize=(12,8))
 
 f.subplots_adjust(bottom=0.15, left=0.08, right=1)
 
-### get the axes position and shrink the width to 80 % (for legend placement)
+### get the axes position and shrink the width to ~80 % (for legend placement)
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.78, box.height])
 
