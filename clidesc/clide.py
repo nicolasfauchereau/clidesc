@@ -290,9 +290,30 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
     returns the given observations table for the requested stations, date range and columns
     depends on an open clidDB connection clideDB
 
-    Usage:
-    table = clidesc_Obs(conn, "obs_subdaily", channels, stations, from_date, to_date)
-    Currently no parameter checking.
+    Parameters
+    ----------
+
+    conn : db connection
+        A database connection object as returned by clides_open()
+
+    table: string
+        The table from which the observations are required, can be:
+            + 'obs_daily'
+            + 'obs_subdaily'
+
+    channels : string
+        The channel to retrieve, ex. 'wind_speed', 'rain_24h'
+
+    stations : string
+        The station(s), if more than one 'XXXXX, YYYYY'
+
+    from_date : string
+        The starting date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
+
+    to_date : string
+        The end date in 'YYYY-MM-DD' format
+        e.g. '2014-01-01'
     """
 
     # some string formatting on the stations if more than one
@@ -328,7 +349,18 @@ def clidesc_Obs(conn, table, channels, stations, from_date, to_date):
 # Closes the connection && Frees all the resources on the driver
 
 def clidesc_close(base_path, conn):
-    """docstring for clides"""
+    """
+    closes a clide connection
+
+    Parameters
+    ----------
+
+    base_path : path
+        The base path
+
+    conn : db connection
+        A database connection object as returned by clides_open()
+    """
     clidesc_progress(base_path, 100)
     if conn.closed == 0:
         conn.close()
