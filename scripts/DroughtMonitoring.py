@@ -100,6 +100,8 @@ else:
     #loads the data from clide
     iData = clidesc_rain24h(conn, stations, datetime(min_year, 1 1).strftime("%Y-%m-%d"), to_date)
 
+clidesc_progress(base_path, 10)
+
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex
 
@@ -114,12 +116,16 @@ iData = iData.reindex(daterange)
 min_periods = np.int(np.floor(min_per * window))
 datars = pd.rolling_sum(iData[['rain_24h']], window, min_periods=min_periods)
 
+clidesc_progress(base_path, 20)
+
 ### ===========================================================================
 ### calculates monthly means (will be displayed by the green bars in the graphics)
 ### ===========================================================================
 
 datam = iData[['rain_24h']].resample('1M', how='sum')
 datam.columns = [['monthly means']]
+
+clidesc_progress(base_path, 30)
 
 ### ===========================================================================
 ### calculates the normals for the [window] days periods
@@ -148,12 +154,16 @@ merged_df_mean = merged_df_mean.sort(['year','month','day'], axis=0)
 
 merged_df_mean.columns = ['rain_24h', 'year', 'month','day', 'clim']
 
+clidesc_progress(base_path, 50)
+
 ### ===========================================================================
 ### calculates the anomalies (in percentage of normals) for the [window] days
 ### periods and add these to the DataFrame
 ### ===========================================================================
 
 merged_df_mean['anomalies'] = (merged_df_mean['rain_24h'] / merged_df_mean['clim']) * 100.
+
+clidesc_progress(base_path, 60)
 
 merged_df_mean.index = datars.index
 
@@ -166,6 +176,8 @@ merged_df_mean['monthly means'].fillna(method='bfill', inplace=True)
 ### ===========================================================================
 
 subsetper = merged_df_mean[from_date::]
+
+clidesc_progress(base_path, 70)
 
 ### ===========================================================================
 ### plot
@@ -238,5 +250,7 @@ leg.draw_frame(False)
 
 # saves the figure in png (dpi = 200)
 f.savefig(os.path.join(base_path,'drought_monitoring_{}days_WS.png'.format(window)), dpi=200)
+
+clidesc_progress(base_path, 100)
 
 clidesc_close(base_path, conn)

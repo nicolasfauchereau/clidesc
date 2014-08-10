@@ -81,6 +81,7 @@ else:
     #loads the data from clide
     iData = clidesc_rain24h(conn, stations, from_date, to_date)
 
+clidesc_progress(base_path, 10)
 
 """
 sorts the data in chronological order just in case
@@ -105,6 +106,7 @@ index = pd.date_range(start = datetime(iData.index.year[0], 1, 1), \
                      end = datetime(iData.index.year[-1], 12, 31), freq='1D')
 iData = iData.reindex(index)
 
+clidesc_progress(base_path, 20)
 
 """
 minimum number of days for calculating a monthly statistic
@@ -125,6 +127,7 @@ Calculates monthly cumulative rainfall and index
 mData = iData.groupby([iData.index.year, iData.index.month])[['rain_24h']].aggregate(calcmonsum)
 mData.index = [datetime(x[0],x[1],1) for x in mData.index.get_values()]
 
+clidesc_progress(base_path, 30)
 
 """
 Calculates a monthly climatology
@@ -137,6 +140,8 @@ calculates anomalies
 """
 mData['anoms'] =  mData[['rain_24h']] - np.resize(clim.values, mData.shape)
 
+clidesc_progress(base_path, 40)
+
 
 """
 NOW READS THE Southern Oscillation Index from http://www.cgd.ucar.edu/cas/catalog/climind/SOI.signal.ascii
@@ -145,6 +150,7 @@ NOW READS THE Southern Oscillation Index from http://www.cgd.ucar.edu/cas/catalo
 
 try:
     soi = pd.read_table('http://www.cgd.ucar.edu/cas/catalog/climind/SOI.signal.ascii', sep='\s*', index_col=0, header=None, na_values=-99.9)
+    clidesc_progress(base_path,50)
 except:
     "! WARNING: Unable to read the SOI at http://www.cgd.ucar.edu/cas/catalog/climind/SOI.signal.ascii\n"
 
@@ -162,6 +168,7 @@ seasData = pd.rolling_mean(mData[['anoms','soi']], 3, min_periods=2)
 
 total_data = len(seasData.dropna())
 
+clidesc_progress(base_path, 60)
 
 """
 Groups by month (season) and calculates R and p-value
@@ -180,6 +187,8 @@ R = np.array(R); P = np.array(P)
 seasons = ['NDJ', 'DJF', 'JFM', 'FMA', 'MAM', 'AMJ', 'MJJ', 'JJA', 'JAS', 'ASO', 'SON', 'OND']
 
 Rmax = np.max(np.abs(R)) + 0.1 * np.max(np.abs(R))
+
+clidesc_progress(base_path, 70)
 
 """
 The significance level is set at 90 % (alpha = 0.1)
@@ -211,6 +220,8 @@ ax.set_ylabel("Pearson's R")
 ax.set_ylim(-Rmax, Rmax)
 f.savefig(os.path.join(base_path, 'Barplot_SoiSeasonalRainfall_WS.png'))
 
+clidesc_progress(80)
+
 if seaborn:
     """
     facet plot of the regressions between the SOI and the seasonal rainfall anomalies
@@ -233,5 +244,7 @@ if seaborn:
         else:
             ax.set_ylabel('')
     f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_WS.png'))
+
+clidesc_progress(base_path, 100)
 
 clidesc_close(base_path, conn)
