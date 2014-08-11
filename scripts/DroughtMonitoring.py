@@ -243,7 +243,8 @@ ax2.set_ylim(0, subsetper['anomalies'].max()+5)
 ax2.set_xlim(subsetper.index[0], subsetper.index[-1])
 
 # title
-ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {}".format(window, subsetper.index[-1].strftime("%d %B %Y")), fontsize=16)
+ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {}"\
+.format(window, subsetper.index[-1].strftime("%d %B %Y")), fontsize=16)
 
 ### legend section
 p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.05)
