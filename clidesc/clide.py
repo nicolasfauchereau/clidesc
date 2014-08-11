@@ -33,7 +33,7 @@ progress_count = 0
 ###########################################################################
 def clidesc_progress(base_path, percent):
     with open(os.path.join(base_path,'progress.txt'), 'w+') as f:
-        f.write("%s".format(percent)
+        f.write("%s".format(percent))
         f.close()
 
 ###########################################################################
