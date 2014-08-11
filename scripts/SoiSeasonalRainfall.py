@@ -245,6 +245,6 @@ if seaborn:
             ax.set_ylabel('')
     f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_WS.png'))
 
-clidesc_progress(base_path, 100)
+### closes the connection and writes 100 in the progress.txt file
 
 clidesc_close(base_path, conn)

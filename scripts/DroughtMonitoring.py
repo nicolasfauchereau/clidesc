@@ -257,6 +257,6 @@ leg.draw_frame(False)
 # saves the figure in png (dpi = 200)
 f.savefig(os.path.join(base_path,'drought_monitoring_{}days_WS.png'.format(window)), dpi=200)
 
-clidesc_progress(base_path, 100)
+### closes the connection and writes 100 in the progress.txt file
 
 clidesc_close(base_path, conn)
