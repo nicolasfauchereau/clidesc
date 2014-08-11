@@ -33,12 +33,8 @@ progress_count = 0
 ###########################################################################
 def clidesc_progress(base_path, percent):
     with open(os.path.join(base_path,'progress.txt'), 'w+') as f:
-        f.write("%s\n" % ( percent ) )
+        f.write("%s".format(percent)
         f.close()
-
-def clidesc_progress_add(base_path, progress_count):
-    pass
-
 
 ###########################################################################
 def clidesc_open(base_path, database="clideDB", user="XXX", password="XXX", dbhost='localhost'):
