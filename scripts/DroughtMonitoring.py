@@ -14,6 +14,8 @@
 import os, sys
 import time
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import pandas as pd
 
 ### ===========================================================================
@@ -100,7 +102,7 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), to_date)
+    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1, 1).strftime("%Y-%m-%d"), to_date)
 
 clidesc_progress(base_path, 10)
 
@@ -263,5 +265,7 @@ leg.draw_frame(False)
 f.savefig(os.path.join(base_path,'drought_monitoring_{}days_WS.png'.format(window)), dpi=200)
 
 ### closes the connection and writes 100 in the progress.txt file
+
+clidesc_progress(base_path, 100)
 
 clidesc_close(base_path, conn)
