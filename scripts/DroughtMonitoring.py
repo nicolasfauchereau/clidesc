@@ -13,12 +13,13 @@
 # imports
 import os, sys
 import time
-import pandas as pd
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+import pandas as pd
 
 ### ===========================================================================
-# Settings
+ Settings
 ### ===========================================================================
 print("Programme: DroughtMonitoring.py\n")
 

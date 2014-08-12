@@ -15,10 +15,11 @@ import os, sys
 import time
 from datetime import datetime, timedelta
 from calendar import month_abbr
-import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import numpy as np
+import pandas as pd
 from scipy.stats import pearsonr
-from matplotlib import pyplot as plt
 try:
     import seaborn as sb
     seaborn = True
