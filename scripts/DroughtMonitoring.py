@@ -224,7 +224,7 @@ ax2.axhline(level_1, color='r', zorder=10)
 ax2.axhline(level_2, color='r', zorder=10, lw=2)
 
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 100., \
-                 where=subsetper['anomalies'] > 100., color='b', interpolate=True, alpha=0.05)
+                 where=subsetper['anomalies'] > 100., color='b', interpolate=True, alpha=0.2)
 
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * level_2, \
                  where=subsetper['anomalies'] < level_2, color='#700000', interpolate=True, alpha=0.9)
@@ -233,7 +233,7 @@ ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)
                  where=subsetper['anomalies'] < level_1, color='r', interpolate=True, alpha=0.4)
 
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 100., \
-                 where=subsetper['anomalies'] < 100., color='r', interpolate=True, alpha=0.05)
+                 where=subsetper['anomalies'] < 100., color='r', interpolate=True, alpha=0.2)
 
 label = ax2.set_ylabel('percentage of normal', fontsize=16)
 label.set_color('b')
@@ -252,7 +252,7 @@ ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {} fo
 .format(window, subsetper.index[-1].strftime("%d %B %Y"), sName), fontsize=16)
 
 ### legend section
-p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.05)
+p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.2)
 p2 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.4)
 p3 = plt.Rectangle((0, 0), 1, 1, fc="#700000", alpha=0.9)
 leg = plt.legend([p1, p2, p3], ['< mean', '< {}%'.format(level_1), '< {}%'.format()],\
