@@ -14,12 +14,10 @@
 import os, sys
 import time
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
 import pandas as pd
 
 ### ===========================================================================
- Settings
+# Settings
 ### ===========================================================================
 print("Programme: DroughtMonitoring.py\n")
 
@@ -102,14 +100,14 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1,  1).strftime("%Y-%m-%d"), to_date)
+    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), to_date)
 
 clidesc_progress(base_path, 10)
 
 # The DataFrame from clide is likely to contain missing indexes
 # so we create a continuous datetime index and reindex
 
-daterange = pd.period_range(start = datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), \
+daterange = pd.period_range(start = datetime(norm_year_start, 1, 1).strftime("%Y-%m-%d"), \
 end = to_date, freq = 'D').to_datetime()
 
 iData = iData.reindex(daterange)
@@ -202,7 +200,11 @@ ax.set_position([box.x0, box.y0, box.width * 0.78, box.height])
 ax.plot(subsetper.index, subsetper['monthly means'], color='g', alpha=0.5)
 ax.fill_between(subsetper.index, subsetper['monthly means'],color='g', alpha=0.3)
 ax.set_ylim(0, max(subsetper['monthly means'] + 0.2 * subsetper['monthly means']))
-ax.set_ylabel("monthly (calendar month) rainfall (mm)")
+label = ax.set_ylabel("monthly (calendar month) rainfall (mm)")
+label.set_color('g')
+[l.set_color('g') for l in ax.get_yticklabels()]
+
+
 [l.set_rotation(90) for l in ax.xaxis.get_ticklabels()]
 ax.grid('off') # no grid lines for the monthly rainfall
 
@@ -233,7 +235,9 @@ ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)
 ax2.fill_between(subsetper.index, subsetper['anomalies'], np.ones(len(subsetper)) * 100., \
                  where=subsetper['anomalies'] < 100., color='r', interpolate=True, alpha=0.05)
 
-ax2.set_ylabel('percentage of normal', fontsize=16)
+label = ax2.set_ylabel('percentage of normal', fontsize=16)
+label.set_color('b')
+[l.set_color('b') for l in ax2.get_yticklabels()]
 
 ax2.grid('on') # gridlines ON for the percentage anomalies
 
@@ -244,8 +248,8 @@ ax2.set_ylim(0, subsetper['anomalies'].max()+5)
 ax2.set_xlim(subsetper.index[0], subsetper.index[-1])
 
 # title
-ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {}"\
-.format(window, subsetper.index[-1].strftime("%d %B %Y")), fontsize=16)
+ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {} for {}"\
+.format(window, subsetper.index[-1].strftime("%d %B %Y"), sName), fontsize=16)
 
 ### legend section
 p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.05)
