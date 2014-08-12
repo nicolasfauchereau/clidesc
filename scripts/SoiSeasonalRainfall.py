@@ -24,7 +24,7 @@ try:
     import seaborn as sb
     seaborn = True
 except:
-    print("we don't plot the seaborn module'")
+    print("Seaborn is not installed,\nplease install with /opt/anaconda/bin/pip install seaborn")
     seaborn = False
 
 ### ===========================================================================
@@ -89,7 +89,6 @@ sorts the data in chronological order just in case
 """
 iData.sort_index(inplace=True)
 
-
 """
 The DataFrame from clide is likely to contain missing indexes
 so we create a continuous datetime index and reindex
@@ -97,7 +96,6 @@ so we create a continuous datetime index and reindex
 
 daterange = pd.period_range(start = from_date, end = to_date, freq = 'D').to_datetime()
 iData = iData.reindex(daterange)
-
 
 """
 Then we reindex again to have 'complete' years, starting the
@@ -247,5 +245,7 @@ if seaborn:
     f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_WS.png'))
 
 ### closes the connection and writes 100 in the progress.txt file
+
+clidesc_progress(base_path, 100)
 
 clidesc_close(base_path, conn)
