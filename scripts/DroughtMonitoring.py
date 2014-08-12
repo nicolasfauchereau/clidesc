@@ -102,7 +102,7 @@ if local:
 	iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
-    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1 1).strftime("%Y-%m-%d"), to_date)
+    iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1,  1).strftime("%Y-%m-%d"), to_date)
 
 clidesc_progress(base_path, 10)
 
