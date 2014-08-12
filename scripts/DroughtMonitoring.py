@@ -239,7 +239,7 @@ label = ax2.set_ylabel('percentage of normal', fontsize=16)
 label.set_color('b')
 [l.set_color('b') for l in ax2.get_yticklabels()]
 
-ax2.grid('on') # gridlines ON for the percentage anomalies
+ax2.grid('on', color='b') # gridlines ON for the percentage anomalies
 
 ax2.set_ylim(0, subsetper['anomalies'].max()+5)
 
