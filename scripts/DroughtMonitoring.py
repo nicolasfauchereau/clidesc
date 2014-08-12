@@ -257,7 +257,7 @@ ax2.set_title("{} days cumulative rainfall anomalies (% of normal)\nending {} fo
 p1 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.2)
 p2 = plt.Rectangle((0, 0), 1, 1, fc="r", alpha=0.4)
 p3 = plt.Rectangle((0, 0), 1, 1, fc="#700000", alpha=0.9)
-leg = plt.legend([p1, p2, p3], ['< mean', '< {}%'.format(level_1), '< {}%'.format()],\
+leg = plt.legend([p1, p2, p3], ['< mean', '< {}%'.format(level_1), '< {}%'.format(level_2)],\
           loc='upper left', bbox_to_anchor = (1.035, 1.01), fontsize=19)
 leg.draw_frame(False)
 
