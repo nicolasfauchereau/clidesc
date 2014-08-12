@@ -20,7 +20,7 @@ dbhost = 'localhost'
 
 if len(sys.argv) == 5:
     base_path = sys.argv[1] # base path is the path where the outputs, progress files and figures are saved
-    stations = sys.argv[2] # list of stations, assumes string is passed, and comma is the separator
+    stations = str(sys.argv[2]) # list of stations, comma must be the separator
     from_date = parser.parse(sys.argv[3]) # from date: transform into a datetime object
     from_date = from_date.strftime('%Y-%m-%d') # and format correctly just in case the date wasnt entered YYYY-MM-DD
     to_date = parser.parse(sys.argv[4]) # to date: idem
