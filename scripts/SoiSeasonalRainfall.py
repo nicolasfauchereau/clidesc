@@ -237,11 +237,17 @@ if seaborn:
         ds = ds.dropna()
         sb.regplot(ds['soi'], ds['anoms'], ax=ax, color='#000099')
         ax.set_title("{}, R = {:4.2f}".format(seasons[i],ds.corr().ix[1,0]))
-        ax.set_xlabel('SOI')
+
         if m in [1,4,7,10]:
             ax.set_ylabel('anoms. (mm)')
         else:
             ax.set_ylabel('')
+
+        if m in [10,11,12]:
+            ax.set_xlabel('SOI')
+        else:
+            ax.set_xlabel('')
+
     f.savefig(os.path.join(base_path, 'Regplot_SoiSeasonalRainfall_WS.png'))
 
 ### closes the connection and writes 100 in the progress.txt file
