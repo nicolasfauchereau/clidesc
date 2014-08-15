@@ -219,7 +219,7 @@ ax.set_ylabel("Pearson's R")
 ax.set_ylim(-Rmax, Rmax)
 f.savefig(os.path.join(base_path, 'Barplot_SoiSeasonalRainfall_WS.png'))
 
-clidesc_progress(80)
+clidesc_progress(base_path, 80)
 
 if seaborn:
     """
