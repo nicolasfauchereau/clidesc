@@ -98,8 +98,8 @@ if pd.to_datetime(sDate) > datetime(norm_year_start,1,1):
 
 if local:
     # if local loads a example 24 hours rainfall dataset
-	iFile = '../data/table_rain24h.csv'
-	iData = pd.read_csv(iFile, index_col=0)
+    iFile = '../data/table_rain24h.csv'
+    iData = pd.read_csv(iFile, index_col=0)
 else:
     #loads the data from clide
     iData = clidesc_rain24h(conn, stations, datetime(norm_year_start, 1, 1).strftime("%Y-%m-%d"), to_date)
